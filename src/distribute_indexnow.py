@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
-BASE = os.environ.get("SEO_BASE_URL", "https://15900646562a-prog.github.io/reset-day-health").rstrip("/")
+BASE = os.environ.get("SEO_BASE_URL", "https://learn.resetday.health").rstrip("/")
 HOST = re.sub(r"^https?://", "", BASE).split("/")[0]
 KEYFILE = DOCS / "indexnow_key.txt"          # 我们自己记 key 的地方
 ENDPOINT = "https://api.indexnow.org/IndexNow"
