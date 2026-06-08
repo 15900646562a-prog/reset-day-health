@@ -15,7 +15,7 @@ ARTICLES = ROOT / "content" / "articles"
 ARTICLES.mkdir(parents=True, exist_ok=True)
 
 MODEL = os.environ.get("SEO_MODEL", "gpt-4o-mini")
-BASE_URL = os.environ.get("SEO_BASE_URL", "https://15900646562a-prog.github.io/reset-day-health")
+BASE_URL = os.environ.get("SEO_BASE_URL", "https://learn.resetday.health")
 MAX_WORKERS = 8
 
 CLUSTERS = {

@@ -9,7 +9,7 @@ ARTICLES = ROOT / "content" / "articles"
 SITE = ROOT / "docs"
 SITE.mkdir(parents=True, exist_ok=True)
 import os
-BASE = os.environ.get("SEO_BASE_URL", "https://15900646562a-prog.github.io/reset-day-health").rstrip("/")
+BASE = os.environ.get("SEO_BASE_URL", "https://learn.resetday.health").rstrip("/")
 
 CLUSTER_NAMES = {
     "life-after-the-shot": "Life After the Shot",
@@ -134,6 +134,7 @@ def render_index(arts):
         blocks += f'<div class="cluster"><h2>{esc(name)}</h2><div class="grid">{cards}</div></div>'
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="1YvryP5-kEntEzBtDaiAVKK9-KChZpJokV6zSEEfz7Q">
 <title>Reset Day — No-Needle Weight Support & GLP-1 Education</title>
 <meta name="description" content="Plain-English education on GLP-1, tirzepatide, metabolism, PCOS and cravings — and T-Patch, the no-needle topical tirzepatide.">
 <link rel="canonical" href="{BASE}/index.html"><style>{CSS}</style></head><body>
