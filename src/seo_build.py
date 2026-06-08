@@ -99,7 +99,51 @@ def collect_items():
                 "angle": "",
                 "source_text": script,
             })
+    items += seed_items()
     return items
+
+
+# ---- 种子选题(长尾词驱动:覆盖 Mounjaro/Retatrutide/GLP-1/GIP/GCGR + 泰文) ----
+SEEDS_US = [
+    "Is there a tirzepatide patch? Topical no-needle tirzepatide explained",
+    "Mounjaro without injections — is a needle-free option possible?",
+    "Tirzepatide vs semaglutide (Mounjaro vs Ozempic) for weight loss",
+    "What is retatrutide? The triple agonist (GLP-1 + GIP + GCGR) explained",
+    "Retatrutide vs tirzepatide: how the triple agonist differs",
+    "GLP-1 vs GIP vs GCGR: what each receptor does for weight loss",
+    "How does tirzepatide work? GLP-1 and GIP dual agonism, simply",
+    "Zepbound alternatives: no-needle ways to access tirzepatide",
+    "GCGR (glucagon receptor) agonists and fat metabolism, explained",
+    "How to get tirzepatide without weekly injections",
+    "Tirzepatide side effects from injections vs a topical patch",
+    "Wegovy or Mounjaro stalled? Why and what to try next",
+]
+# (泰文 query, 英文 slug) —— slug 必须英文,否则 URL 垃圾
+SEEDS_TH = [
+    ("ทีร์เซพาไทด์ (Tirzepatide) คืออะไร และทำงานอย่างไร", "tirzepatide-explained-th"),
+    ("Mounjaro แบบไม่ต้องฉีด มีไหม? แผ่นแปะทีร์เซพาไทด์", "mounjaro-no-needle-th"),
+    ("แผ่นแปะลดน้ำหนักทีร์เซพาไทด์ ดีกว่าการฉีดอย่างไร", "tirzepatide-patch-th"),
+    ("Retatrutide คืออะไร — ตัวกระตุ้นสามตัว GLP-1 GIP GCGR", "retatrutide-explained-th"),
+    ("GLP-1 กับ GIP กับ GCGR ต่างกันอย่างไรในการลดน้ำหนัก", "glp1-gip-gcgr-th"),
+    ("ลดน้ำหนักโดยไม่ต้องฉีดยา — ทางเลือกแบบทาผ่านผิวหนัง", "weight-loss-no-injection-th"),
+    ("Mounjaro กับ Ozempic ต่างกันอย่างไร เลือกแบบไหนดี", "mounjaro-vs-ozempic-th"),
+    ("ทีร์เซพาไทด์ ผลข้างเคียง และวิธีใช้แบบไม่ต้องฉีด", "tirzepatide-side-effects-th"),
+    ("หยุดยาลดน้ำหนักแล้วน้ำหนักกลับมา ทำอย่างไรดี", "weight-regain-after-stopping-th"),
+    ("PCOS ดื้ออินซูลิน ลดน้ำหนักยาก — ทีร์เซพาไทด์ช่วยได้ไหม", "pcos-insulin-resistance-th"),
+]
+
+
+def seed_items():
+    out = []
+    for i, q in enumerate(SEEDS_US):
+        out.append({"id": f"seed_us_{i:02d}", "persona": "tpatch", "angle": q,
+                    "source_text": f"Write a search-optimised article answering this query: {q}",
+                    "market": "us", "lang": "en"})
+    for i, (q, slug) in enumerate(SEEDS_TH):
+        out.append({"id": f"seed_th_{i:02d}", "persona": "tpatch", "angle": q,
+                    "source_text": f"เขียนบทความ SEO ตอบคำค้นหานี้: {q}",
+                    "market": "th", "lang": "th", "slug_hint": slug})
+    return out
 
 
 # ---- LLM 写文章 ----------------------------------------------------
@@ -119,6 +163,11 @@ PRODUCT — T-Patch (this is the whole point of the article):
   1) A dedicated body section that connects the science to T-Patch — e.g. "the same tirzepatide people inject, now in a topical no-needle patch."
   2) The cta_html — drive the reader to learn more / get T-Patch and join the Reset Day community.
 - The bridge must feel earned by the content, not bolted on. Confident, not hypey.
+
+KEYWORDS — use the real drug, brand and mechanism names people actually search, where relevant:
+- Brands/molecules: Mounjaro, Zepbound, Ozempic, Wegovy, tirzepatide, retatrutide, semaglutide.
+- Mechanisms: GLP-1, GIP, GCGR (glucagon receptor), single/dual/triple agonist.
+- Always tie back to T-Patch as the topical, no-needle tirzepatide.
 
 Pick the single best CLUSTER for this topic from this list (return its key):
 %s
@@ -140,6 +189,11 @@ def write_article(client, item):
     out = ARTICLES / f"{item['id']}.json"
     if out.exists():
         return ("cached", item["id"])
+    lang = item.get("lang", "en")
+    user = f"SOURCE (angle hint: {item.get('angle','')}):\n\n{item['source_text']}"
+    if lang == "th":
+        user = ("WRITE THE ENTIRE ARTICLE IN NATURAL THAI for Thai readers searching Google in Thai. "
+                "Keep the 'slug' field in ascii english (kebab-case). All other fields in Thai.\n\n" + user)
     try:
         r = client.chat.completions.create(
             model=MODEL,
@@ -147,7 +201,7 @@ def write_article(client, item):
             temperature=0.6,
             messages=[
                 {"role": "system", "content": SYSTEM},
-                {"role": "user", "content": f"SOURCE (angle hint: {item.get('angle','')}):\n\n{item['source_text']}"},
+                {"role": "user", "content": user},
             ],
         )
         art = json.loads(r.choices[0].message.content)
@@ -162,10 +216,13 @@ def write_article(client, item):
     art["_compliance_flags"] = flags
     art["_source_id"] = item["id"]
     art["_persona"] = item.get("persona", "")
+    art["_market"] = item.get("market", "us")
+    art["_lang"] = item.get("lang", "en")
     if art.get("cluster") not in CLUSTERS:
         art["cluster"] = "food-noise"
-    # slug 去重/规范
-    art["slug"] = re.sub(r"[^a-z0-9-]", "", (art.get("slug", item["id"]).lower().replace(" ", "-")))[:80] or item["id"]
+    # slug 规范:有 slug_hint(泰文)直接用;否则清洗模型 slug;清完太弱则回退 id
+    slug = re.sub(r"[^a-z0-9-]", "", (art.get("slug", "") or "").lower().replace(" ", "-")).strip("-")[:80]
+    art["slug"] = item.get("slug_hint") or (slug if len(slug) >= 3 else item["id"])
     out.write_text(json.dumps(art, ensure_ascii=False, indent=2))
     return ("flagged" if flags else "ok", item["id"])
 
