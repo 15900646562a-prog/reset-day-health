@@ -312,9 +312,10 @@ def write_article(client, item):
         art["cluster"] = "compare"
     elif art.get("cluster") not in CLUSTERS:
         art["cluster"] = "food-noise"
-    # slug 规范:有 slug_hint(泰文)直接用;否则清洗模型 slug;清完太弱则回退 id
+    # slug 规范:slug_hint 与模型 slug 都强制 ascii-kebab;清完太弱则回退 id
+    hint = re.sub(r"[^a-z0-9-]", "", (item.get("slug_hint", "") or "").lower().replace(" ", "-")).strip("-")
     slug = re.sub(r"[^a-z0-9-]", "", (art.get("slug", "") or "").lower().replace(" ", "-")).strip("-")[:80]
-    art["slug"] = item.get("slug_hint") or (slug if len(slug) >= 3 else item["id"])
+    art["slug"] = (hint if len(hint) >= 3 else (slug if len(slug) >= 3 else re.sub(r"[^a-z0-9_]", "", item["id"])))
     out.write_text(json.dumps(art, ensure_ascii=False, indent=2))
     return ("flagged" if flags else "ok", item["id"])
 

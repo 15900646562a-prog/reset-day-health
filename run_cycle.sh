@@ -6,6 +6,11 @@ cd "$(dirname "$0")"
 export SEO_BASE_URL="${SEO_BASE_URL:-https://learn.resetday.health}"
 LOG="cycle_$(date -u +%Y%m%d_%H%M).log"
 
+# 在 pending-review 分支上干活(不碰本地 main,不推 GitHub)
+git fetch -q origin main 2>/dev/null || true
+git rev-parse --verify -q pending-review >/dev/null || git branch pending-review
+git checkout -q pending-review
+
 echo "== [0/4] 构思新长尾选题(自动产新内容的源头) ==" | tee -a "$LOG"
 python3 src/ideate.py 2>&1 | tee -a "$LOG" || echo "ideate 失败,继续用现有种子" | tee -a "$LOG"
 
@@ -30,7 +35,6 @@ python3 src/render.py 2>&1 | tee -a "$LOG"
 echo "== [4/4] 提交到本地 pending-review(不推 GitHub;COO 验收时才发布) ==" | tee -a "$LOG"
 git add -A
 if git commit -q -m "cycle: 自动生产一轮(过 seo_qc)$(date -u +%F)"; then
-  git branch -f pending-review HEAD
   # 待验收报告(COO 来读)
   {
     echo "# 待验收 · SEO 自动生产 ($(date -u '+%F %H:%M UTC'))"

@@ -54,8 +54,20 @@ def main():
     sample = "\n".join(f"- {a}" for a in angles[:60])
     r = client.chat.completions.create(model=MODEL, response_format={"type": "json_object"},
         temperature=0.9, messages=[{"role": "user", "content": PROMPT % (N, sample)}])
+    import re
     seeds = json.loads(r.choices[0].message.content).get("seeds", [])
-    fresh = [s for s in seeds if s.get("slug") and s["slug"] not in slugs]
+    def ok_slug(sl):  # 退化 slug(无实义,如 th-th)跳过
+        core = sl.replace("-th", "").replace("-us", "").replace("-", "")
+        return len(core) >= 4
+    cleaned = []
+    for s in seeds:
+        sl = re.sub(r"[^a-z0-9-]", "", (s.get("slug", "")).lower().replace(" ", "-")).strip("-")
+        if s.get("lang") == "th" and sl and not sl.endswith("-th"):
+            sl += "-th"
+        s["slug"] = sl
+        if ok_slug(sl):
+            cleaned.append(s)
+    fresh = [s for s in cleaned if s["slug"] not in slugs]
     cur = json.load(open(EXTRA)) if EXTRA.exists() else []
     cur_slugs = {s.get("slug") for s in cur}
     added = [s for s in fresh if s["slug"] not in cur_slugs]

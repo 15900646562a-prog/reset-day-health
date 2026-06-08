@@ -17,3 +17,4 @@ seo_qc: 共 88 页 | FAIL 0
 == [3/4] 渲染 ==
 渲染 us=70 th=18 篇 + 2 index + sitemap(90 url) → /Users/edy/Desktop/seo_factory/docs
 == [4/4] 提交到本地 pending-review(不推 GitHub;COO 验收时才发布) ==
+✅ 本轮进本地 pending-review(未推)。等 COO 验收发布。
