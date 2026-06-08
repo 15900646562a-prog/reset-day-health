@@ -182,7 +182,8 @@ def render_index(arts, lang):
         h1 = "Weight, metabolism & GLP-1 — in plain English"
         intro = "Honest education on tirzepatide, Mounjaro, retatrutide, GLP-1/GIP/GCGR, PCOS and life after the shot — plus T-Patch, the no-needle topical tirzepatide."
         home = f"{BASE}/index.html"; canon = f"{BASE}/index.html"
-        verify = '<meta name="google-site-verification" content="1YvryP5-kEntEzBtDaiAVKK9-KChZpJokV6zSEEfz7Q">'
+        verify = ('<meta name="google-site-verification" content="VgeadCjEiRipelYZMsAYt8GdU55mSNC5K9I7tECnaYk">'
+                  '<meta name="google-site-verification" content="1YvryP5-kEntEzBtDaiAVKK9-KChZpJokV6zSEEfz7Q">')
     return f"""<!doctype html><html lang="{lang}"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 {verify}<title>{esc(title)}</title>
