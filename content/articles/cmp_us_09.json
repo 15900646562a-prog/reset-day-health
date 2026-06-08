@@ -1,0 +1,85 @@
+{
+  "slug": "best-glp1-options-compared",
+  "title": "Best GLP-1 Weight Loss Options Compared",
+  "meta_description": "Explore the best GLP-1 weight loss options, including T-Patch and injections, to find the right choice for you.",
+  "cluster": "compare",
+  "h1": "Best GLP-1 Weight Loss Options Compared",
+  "intro_html": "<p>When considering GLP-1 medications for weight loss, it's essential to weigh your options carefully. With various delivery methods available, including injections and topical patches, choosing the right one can significantly impact your experience and results.</p><p>This article compares popular options, highlighting their key features to help you make an informed decision.</p>",
+  "table": {
+    "headers": [
+      "Option",
+      "Form",
+      "Active",
+      "Price (approx)",
+      "How to get"
+    ],
+    "rows": [
+      [
+        "T-Patch (Reset Day)",
+        "Topical patch",
+        "tirzepatide",
+        "$149 / month · $399 / 3 months · $699 / 6 months",
+        "Order online, delivered to your door"
+      ],
+      [
+        "Medvi",
+        "Injection + oral tablet",
+        "semaglutide/tirzepatide",
+        "$279→$399/mo",
+        "Telehealth prescription, subscription"
+      ],
+      [
+        "Hims",
+        "Injection",
+        "semaglutide/tirzepatide",
+        "$199–$299/mo",
+        "Subscription"
+      ],
+      [
+        "Henry Meds",
+        "Injection",
+        "semaglutide",
+        "$297/mo",
+        "Subscription"
+      ]
+    ]
+  },
+  "sections": [
+    {
+      "h2": "T-Patch (Reset Day)",
+      "html": "<p>The T-Patch offers a unique advantage with its topical delivery method. This means no needles are involved, making it an excellent choice for those who are needle-averse or simply prefer a more convenient option. With T-Patch, you can apply the patch and go about your day without the hassle of weekly injections.</p>"
+    },
+    {
+      "h2": "Medvi",
+      "html": "<p>Medvi provides a combination of an injection and an oral tablet, utilizing compounded semaglutide and tirzepatide. While this option is available through telehealth, it requires regular injections, which may not be suitable for everyone. The price range is also higher than some alternatives, which could be a consideration for budget-conscious users.</p>"
+    },
+    {
+      "h2": "Hims",
+      "html": "<p>Hims offers compounded semaglutide and tirzepatide via injections. Similar to Medvi, this option requires a subscription model and regular visits for injections. While it has a competitive price point, the necessity of needles may deter those looking for a more straightforward solution.</p>"
+    },
+    {
+      "h2": "Henry Meds",
+      "html": "<p>Henry Meds provides semaglutide via injections, available through a subscription model. Although the pricing is comparable to other injection-based services, it still involves the discomfort of needles, which might not appeal to everyone.</p>"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the main advantage of T-Patch?",
+      "a": "The main advantage of T-Patch is its topical delivery method, which eliminates the need for needles and weekly injections, providing a more convenient option."
+    },
+    {
+      "q": "Are there any side effects with GLP-1 medications?",
+      "a": "As with any medication, GLP-1 medications may have side effects. It's crucial to consult your healthcare provider to understand potential risks and benefits."
+    },
+    {
+      "q": "How do I choose the right GLP-1 option for me?",
+      "a": "Consider your comfort level with needles, the convenience of delivery methods, and your budget. Consulting with a healthcare provider can also help guide your decision."
+    }
+  ],
+  "cta_html": "<p>Ready to explore a convenient, no-needle option for weight loss? Check out T-Patch from Reset Day today!</p>",
+  "_compliance_flags": [],
+  "_source_id": "cmp_us_09",
+  "_persona": "tpatch",
+  "_market": "us",
+  "_lang": "en"
+}

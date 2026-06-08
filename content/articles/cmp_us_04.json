@@ -1,0 +1,71 @@
+{
+  "slug": "tpatch-vs-henry-meds",
+  "title": "T-Patch vs Henry Meds: Which is Right for You?",
+  "meta_description": "Explore the differences between T-Patch and Henry Meds to find the best tirzepatide option for your weight loss journey.",
+  "cluster": "compare",
+  "h1": "T-Patch vs Henry Meds: Which is Right for You?",
+  "intro_html": "<p>Choosing the right method for weight loss support can be challenging, especially when considering tirzepatide options. T-Patch and Henry Meds both offer unique approaches, making it essential to understand their differences to find the best fit for your needs.</p><p>This comparison will help you navigate the pros and cons of each, focusing on delivery method, convenience, and pricing.</p>",
+  "table": {
+    "headers": [
+      "Option",
+      "Form",
+      "Active",
+      "Price (approx)",
+      "How to get"
+    ],
+    "rows": [
+      [
+        "T-Patch (Reset Day)",
+        "Topical Patch",
+        "Tirzepatide",
+        "$149 / month · $399 / 3 months · $699 / 6 months",
+        "Direct purchase, no prescription needed."
+      ],
+      [
+        "Henry Meds",
+        "Injection",
+        "Compounded Semaglutide",
+        "$297 / month",
+        "Telehealth subscription required."
+      ]
+    ]
+  },
+  "sections": [
+    {
+      "h2": "T-Patch: Convenience and No Needles",
+      "html": "<p>T-Patch is a topical transdermal patch that delivers tirzepatide without the need for needles or injections. This method is particularly appealing for those who dislike needles or want a hassle-free experience. The simplicity of applying a patch allows for quick and easy use, fitting seamlessly into your daily routine. Pricing starts at approximately $149 per month, making it a straightforward option for those looking to manage their weight.</p>"
+    },
+    {
+      "h2": "Henry Meds: Injection-Based Approach",
+      "html": "<p>Henry Meds provides a compounded semaglutide injection, which requires a telehealth consultation to obtain a prescription. While this method may be effective, it involves the discomfort of regular injections, which can be a deterrent for many. The pricing is around $297 per month, making it a more expensive option compared to T-Patch. People who are comfortable with injections and prefer a healthcare provider's oversight may find this option suitable.</p>"
+    },
+    {
+      "h2": "Who Should Pick What?",
+      "html": "<p>If you are needle-averse or seek a convenient, simple solution for weight loss, T-Patch is likely the better choice for you. Its topical application eliminates the need for injections, making it a user-friendly option. Conversely, if you are comfortable with injections and prefer a more traditional approach with a healthcare provider's guidance, Henry Meds may suit your needs.</p>"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is T-Patch effective for weight loss?",
+      "a": "T-Patch delivers tirzepatide transdermally, which may support weight loss efforts. Consult your healthcare provider for personalized advice."
+    },
+    {
+      "q": "How often do I need to use T-Patch?",
+      "a": "T-Patch is designed for daily use. Follow the instructions provided with your patch for optimal results."
+    },
+    {
+      "q": "What are the side effects of Henry Meds?",
+      "a": "As with any medication, side effects may occur. Discuss potential side effects with your healthcare provider before starting treatment."
+    },
+    {
+      "q": "Can I switch from Henry Meds to T-Patch?",
+      "a": "Yes, but it's essential to consult your healthcare provider before making any changes to your weight loss regimen."
+    }
+  ],
+  "cta_html": "<p>Ready to try T-Patch? Visit Reset Day to learn more and start your weight loss journey today!</p>",
+  "_compliance_flags": [],
+  "_source_id": "cmp_us_04",
+  "_persona": "tpatch",
+  "_market": "us",
+  "_lang": "en"
+}

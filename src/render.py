@@ -13,18 +13,30 @@ BASE = os.environ.get("SEO_BASE_URL", "https://learn.resetday.health").rstrip("/
 
 # 每市场的落点(CEO 提供)
 DEST = {
-    "us": "https://lp-edge.15900646562a.workers.dev/?creative=tpatch-plateau",
+    "us": "https://tpatch-lp.pages.dev/",
     "th": "https://tpatch.sarahbot.fit",
 }
 BTN = {"us": "Get T-Patch — the no-needle tirzepatide →", "th": "ดู T-Patch — ทีร์เซพาไทด์แบบไม่ต้องฉีด →"}
 
 CLUSTER_NAMES = {
+    "compare": "Compare & Reviews",
     "life-after-the-shot": "Life After the Shot",
     "affordable-alternatives": "Affordable Alternatives",
     "midlife-metabolism": "Midlife Metabolism",
     "pcos-insulin": "PCOS & Insulin",
     "food-noise": "Food Noise & Cravings",
 }
+
+
+def render_table(t):
+    if not t or not isinstance(t, dict) or not t.get("rows"):
+        return ""
+    heads = "".join(f"<th>{esc(str(h))}</th>" for h in t.get("headers", []))
+    body = ""
+    for row in t.get("rows", []):
+        cells = "".join(f"<td>{esc(str(c))}</td>" for c in row)
+        body += f"<tr>{cells}</tr>"
+    return f'<div class="tablewrap"><table class="cmp"><thead><tr>{heads}</tr></thead><tbody>{body}</tbody></table></div>'
 NEUTRALIZE = [(re.compile(r"\bguarantee(d|s)?\b", re.I), "designed to help"),
              (re.compile(r"\bFDA[- ]approved\b", re.I), "lab-tested")]
 def clean(s):
@@ -60,6 +72,11 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 .card{display:block;padding:16px 18px;background:var(--card);border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--ink)}
 .card:hover{border-color:var(--accent)}.card .t{font-weight:600}.card .m{color:var(--muted);font-size:15px;margin-top:4px}
 .langsw{font-size:14px}
+.tablewrap{overflow-x:auto;margin:24px 0}
+table.cmp{border-collapse:collapse;width:100%;font-size:15px;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+table.cmp th{background:var(--accent);color:#fff;text-align:left;padding:11px 13px;font-weight:600}
+table.cmp td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:top}
+table.cmp tbody tr:first-child td{font-weight:600;background:oklch(96% 0.03 165)}
 """
 
 def esc(s): return html.escape(s or "", quote=True)
@@ -132,6 +149,7 @@ def render_article(d, siblings):
 <p class="eyebrow">{esc(CLUSTER_NAMES.get(d.get('cluster',''),'Weight & Metabolism'))}</p>
 <h1>{esc(d.get('h1') or d.get('title',''))}</h1>
 {clean(d.get('intro_html',''))}
+{render_table(d.get('table'))}
 {secs}
 {faq_html}
 <div class="cta">{clean(d.get('cta_html',''))}<a class="btn" href="{dest_url(d)}">{esc(btn)}</a></div>

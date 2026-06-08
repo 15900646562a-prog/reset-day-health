@@ -1,0 +1,96 @@
+{
+  "slug": "alternatives-to-weight-loss-shots",
+  "title": "Best Alternatives to Weekly Weight-Loss Shots 2026",
+  "meta_description": "Explore the best alternatives to weekly weight-loss shots, including a no-needle option.",
+  "cluster": "compare",
+  "h1": "Alternatives to Weekly Weight-Loss Shots",
+  "intro_html": "<p>For those seeking weight-loss support, weekly injections can be daunting. Fortunately, there are alternatives that can provide effective results without the need for needles. This article compares various options, including a unique topical patch, to help you make an informed decision.</p>",
+  "table": {
+    "headers": [
+      "Option",
+      "Form",
+      "Active",
+      "Price (approx)",
+      "How to get"
+    ],
+    "rows": [
+      [
+        "T-Patch (Reset Day)",
+        "Topical Patch",
+        "Tirzepatide",
+        "$149 / month · $399 / 3 months · $699 / 6 months",
+        "Order online, no prescription needed"
+      ],
+      [
+        "Medvi",
+        "Injection + Oral Tablet",
+        "Semaglutide/Tirzepatide",
+        "$279 → $399/mo",
+        "Telehealth prescription, subscription"
+      ],
+      [
+        "Hims",
+        "Injection",
+        "Semaglutide/Tirzepatide",
+        "$199 → $299/mo",
+        "Subscription"
+      ],
+      [
+        "Henry Meds",
+        "Injection",
+        "Semaglutide",
+        "$297/mo",
+        "Subscription"
+      ],
+      [
+        "Ro",
+        "Injection",
+        "Semaglutide",
+        "Check site for pricing",
+        "Telehealth subscription"
+      ]
+    ]
+  },
+  "sections": [
+    {
+      "h2": "T-Patch (Reset Day)",
+      "html": "<p>The T-Patch offers a unique and convenient solution for those who prefer to avoid needles. This topical transdermal patch delivers tirzepatide directly through the skin, eliminating the need for weekly injections. With a straightforward subscription model, it’s easy to manage your weight-loss journey without the discomfort of needles.</p>"
+    },
+    {
+      "h2": "Medvi",
+      "html": "<p>Medvi provides a combination of injections and oral tablets, offering a flexible approach to weight loss. They use compounded semaglutide and tirzepatide, which can be accessed via telehealth services. While their model is convenient, it still requires weekly injections, which some may find off-putting.</p>"
+    },
+    {
+      "h2": "Hims",
+      "html": "<p>Hims also offers injections of compounded semaglutide and tirzepatide through a subscription model. They emphasize accessibility via telehealth. However, like Medvi, patients will need to contend with the discomfort of needles each week.</p>"
+    },
+    {
+      "h2": "Henry Meds & Ro",
+      "html": "<p>Both Henry Meds and Ro provide semaglutide injections through telehealth subscriptions. These options may be appealing to those who prefer a telehealth model, but they too require weekly injections, which can be a barrier for many.</p>"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What are the main benefits of T-Patch?",
+      "a": "T-Patch offers a no-needle, topical option for delivering tirzepatide, making it convenient and less intimidating for users."
+    },
+    {
+      "q": "Are injections more effective than patches?",
+      "a": "Effectiveness can vary by individual. It's best to consult with your healthcare provider to determine the right option for you."
+    },
+    {
+      "q": "Can I switch from injections to T-Patch?",
+      "a": "Yes, many people choose to switch to T-Patch for a more comfortable experience. Discuss this with your healthcare provider."
+    },
+    {
+      "q": "How do I know if tirzepatide is right for me?",
+      "a": "Consult your healthcare provider to evaluate if tirzepatide aligns with your weight-loss goals and overall health."
+    }
+  ],
+  "cta_html": "<p>Explore the convenience of T-Patch today and see how it can fit into your weight-loss journey without the hassle of needles.</p>",
+  "_compliance_flags": [],
+  "_source_id": "cmp_us_10",
+  "_persona": "tpatch",
+  "_market": "us",
+  "_lang": "en"
+}

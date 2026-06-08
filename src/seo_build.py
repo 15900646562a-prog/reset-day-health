@@ -143,6 +143,15 @@ def seed_items():
         out.append({"id": f"seed_th_{i:02d}", "persona": "tpatch", "angle": q,
                     "source_text": f"เขียนบทความ SEO ตอบคำค้นหานี้: {q}",
                     "market": "th", "lang": "th", "slug_hint": slug})
+    # 对比/评测页(compare 模式)
+    for i, (q, slug) in enumerate(SEEDS_COMPARE_US):
+        out.append({"id": f"cmp_us_{i:02d}", "persona": "tpatch", "angle": q, "mode": "compare",
+                    "source_text": f"Write a comparison article for this query: {q}",
+                    "market": "us", "lang": "en", "slug_hint": slug})
+    for i, (q, slug) in enumerate(SEEDS_COMPARE_TH):
+        out.append({"id": f"cmp_th_{i:02d}", "persona": "tpatch", "angle": q, "mode": "compare",
+                    "source_text": f"เขียนบทความเปรียบเทียบสำหรับคำค้นหานี้: {q}",
+                    "market": "th", "lang": "th", "slug_hint": slug})
     return out
 
 
@@ -185,22 +194,84 @@ Return STRICT JSON with keys:
 Output ONLY the JSON object.""" % "\n".join(f"- {k}: {v}" for k, v in CLUSTERS.items())
 
 
+# ---- 对比/评测页(compare 模式)----------------------------------
+TPATCH_PRICING = "$149 / month · $399 / 3 months · $699 / 6 months"
+COMPETITOR_FACTS = """ACCURATE COMPETITOR FACTS (use ONLY these; never invent prices/claims; label prices "approx" and add "check each provider's site for current pricing"):
+- T-Patch (Reset Day): TOPICAL transdermal patch, NO NEEDLE. Active: tirzepatide. Price: %s. Direct, no weekly injection.
+- Medvi: injection + oral tablet. Compounded semaglutide/tirzepatide. Approx semaglutide $179→$299/mo, tirzepatide $279→$399/mo. Telehealth prescription, subscription.
+- Hims: injection. Compounded semaglutide/tirzepatide. Approx semaglutide $149–199/mo, tirzepatide $199–299/mo. Subscription. (Context: referred to DOJ Feb 2026; sued by Novo Nordisk.)
+- Henry Meds: injection. Compounded semaglutide ~$297/mo. Subscription.
+- Ro: injection. Semaglutide. Telehealth subscription.""" % TPATCH_PRICING
+
+COMPARE_SYSTEM = """You are a health-content writer for "Reset Day", maker of T-Patch — a topical (transdermal), NO-NEEDLE tirzepatide patch.
+
+Write an honest, useful COMPARISON / "best of" article for people choosing how to get tirzepatide / GLP-1 weight-loss help. These are high-intent buyers.
+
+%s
+
+HARD RULES:
+- Be factually fair to competitors (accurate, not trash-talk). Inaccurate competitor facts = legal risk.
+- T-Patch's honest differentiator = TOPICAL, NO NEEDLE, no weekly injection, simple. Position it for people who hate needles / want convenience.
+- Do NOT claim T-Patch is "the same as" or "equivalent to" Mounjaro/Zepbound/Wegovy, and do NOT claim FDA approval. Differentiate on the no-needle delivery, not drug-equivalence. (This exact equivalence wording is under active FDA enforcement.)
+- No fabricated efficacy numbers, no guarantees, no "cure". Include a "talk to your healthcare provider" line.
+- Prices labelled "approx"; add "check each provider's official site for current pricing".
+
+Return STRICT JSON:
+- slug: ascii kebab-case (will be overridden by a hint if provided)
+- title: SEO title (<=65 chars), front-loads the query (e.g. "Best No-Needle Tirzepatide 2026")
+- meta_description: <=155 chars
+- cluster: "compare"
+- h1
+- intro_html: 1-2 <p> framing the choice the reader faces
+- table: {headers: ["Option","Form","Active","Price (approx)","How to get"], rows: [[...5 cells...], ...]} — include T-Patch + 2-4 real competitors from the facts above; T-Patch row first
+- sections: array of 3-4 {h2, html} — a short fair take on each main option, then a "Who should pick what" verdict that points needle-averse / convenience buyers to T-Patch
+- faq: array of 3-4 {q,a}
+- cta_html: short <p> pointing to T-Patch / Reset Day
+Output ONLY the JSON object.""" % COMPETITOR_FACTS
+
+SEEDS_COMPARE_US = [
+    ("Best no-needle tirzepatide options 2026", "best-no-needle-tirzepatide"),
+    ("How to get tirzepatide without injections", "tirzepatide-without-injections"),
+    ("T-Patch vs Medvi: needle-free patch vs injections", "tpatch-vs-medvi"),
+    ("T-Patch vs Hims for tirzepatide weight loss", "tpatch-vs-hims"),
+    ("T-Patch vs Henry Meds: which is right for you", "tpatch-vs-henry-meds"),
+    ("Injections vs a topical tirzepatide patch", "injections-vs-topical-tirzepatide"),
+    ("Mounjaro alternatives without needles 2026", "mounjaro-alternatives-no-needle"),
+    ("Ozempic alternatives without injections", "ozempic-alternatives-no-needle"),
+    ("Cheapest way to get tirzepatide in 2026", "cheapest-tirzepatide"),
+    ("Best GLP-1 weight loss options compared", "best-glp1-options-compared"),
+    ("Alternatives to weekly weight-loss shots", "alternatives-to-weight-loss-shots"),
+    ("Compounded tirzepatide vs a topical patch", "compounded-vs-topical-tirzepatide"),
+]
+SEEDS_COMPARE_TH = [
+    ("ทีร์เซพาไทด์แบบไม่ต้องฉีด ตัวเลือกไหนดี 2026", "best-no-needle-tirzepatide-th"),
+    ("วิธีได้ทีร์เซพาไทด์โดยไม่ต้องฉีด", "tirzepatide-no-injection-th"),
+    ("แผ่นแปะ กับ การฉีด ทีร์เซพาไทด์ แบบไหนดีกว่า", "patch-vs-injection-th"),
+    ("ทางเลือกแทน Mounjaro แบบไม่ต้องฉีด", "mounjaro-alternatives-th"),
+    ("ทีร์เซพาไทด์ ราคาถูกที่สุด ซื้อที่ไหนดี", "cheapest-tirzepatide-th"),
+    ("เปรียบเทียบตัวเลือกลดน้ำหนัก GLP-1 2026", "glp1-options-compared-th"),
+]
+
+
 def write_article(client, item):
     out = ARTICLES / f"{item['id']}.json"
     if out.exists():
         return ("cached", item["id"])
     lang = item.get("lang", "en")
+    mode = item.get("mode", "article")
+    system = COMPARE_SYSTEM if mode == "compare" else SYSTEM
     user = f"SOURCE (angle hint: {item.get('angle','')}):\n\n{item['source_text']}"
     if lang == "th":
         user = ("WRITE THE ENTIRE ARTICLE IN NATURAL THAI for Thai readers searching Google in Thai. "
-                "Keep the 'slug' field in ascii english (kebab-case). All other fields in Thai.\n\n" + user)
+                "Keep the 'slug' field in ascii english (kebab-case). Table headers/cells and all prose in Thai. "
+                "Keep brand names (T-Patch, Medvi, Hims, Mounjaro) and prices as-is.\n\n" + user)
     try:
         r = client.chat.completions.create(
             model=MODEL,
             response_format={"type": "json_object"},
             temperature=0.6,
             messages=[
-                {"role": "system", "content": SYSTEM},
+                {"role": "system", "content": system},
                 {"role": "user", "content": user},
             ],
         )
@@ -218,7 +289,9 @@ def write_article(client, item):
     art["_persona"] = item.get("persona", "")
     art["_market"] = item.get("market", "us")
     art["_lang"] = item.get("lang", "en")
-    if art.get("cluster") not in CLUSTERS:
+    if mode == "compare":
+        art["cluster"] = "compare"
+    elif art.get("cluster") not in CLUSTERS:
         art["cluster"] = "food-noise"
     # slug 规范:有 slug_hint(泰文)直接用;否则清洗模型 slug;清完太弱则回退 id
     slug = re.sub(r"[^a-z0-9-]", "", (art.get("slug", "") or "").lower().replace(" ", "-")).strip("-")[:80]

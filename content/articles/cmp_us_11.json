@@ -1,0 +1,85 @@
+{
+  "slug": "compounded-vs-topical-tirzepatide",
+  "title": "Compounded Tirzepatide vs Topical Patch: Which is Best?",
+  "meta_description": "Explore the differences between compounded tirzepatide injections and a topical patch for weight-loss help.",
+  "cluster": "compare",
+  "h1": "Comparing Compounded Tirzepatide and Topical Patches",
+  "intro_html": "<p>As more people seek effective weight-loss solutions, the options for tirzepatide delivery have expanded. Two popular methods are compounded tirzepatide injections and the innovative topical patch. Each method has its pros and cons, making it essential to understand which option aligns best with your preferences and lifestyle.</p>",
+  "table": {
+    "headers": [
+      "Option",
+      "Form",
+      "Active",
+      "Price (approx)",
+      "How to get"
+    ],
+    "rows": [
+      [
+        "T-Patch (Reset Day)",
+        "Topical Patch",
+        "Tirzepatide",
+        "$149 / month · $399 / 3 months · $699 / 6 months",
+        "Order online, no prescription needed"
+      ],
+      [
+        "Medvi",
+        "Injection + Oral Tablet",
+        "Compounded Semaglutide/Tirzepatide",
+        "$279→$399/mo",
+        "Telehealth prescription, subscription"
+      ],
+      [
+        "Hims",
+        "Injection",
+        "Compounded Semaglutide/Tirzepatide",
+        "$199–$299/mo",
+        "Subscription"
+      ],
+      [
+        "Ro",
+        "Injection",
+        "Semaglutide",
+        "Check site for pricing",
+        "Telehealth subscription"
+      ]
+    ]
+  },
+  "sections": [
+    {
+      "h2": "T-Patch (Reset Day)",
+      "html": "<p>The T-Patch offers a unique, no-needle solution for those looking to incorporate tirzepatide into their weight-loss journey. As a topical patch, it allows for simple application without the discomfort of injections. This convenience makes it an excellent choice for individuals who are needle-averse or prefer a straightforward method of delivery.</p>"
+    },
+    {
+      "h2": "Compounded Tirzepatide Injections (Medvi, Hims, Henry Meds, Ro)",
+      "html": "<p>Compounded tirzepatide is typically delivered through injections, which can be less appealing for those who dislike needles. These providers often offer telehealth services, making it easy to receive prescriptions. However, the need for weekly injections may deter some users. Prices can vary based on the provider and specific formulations, but many fall within a similar range.</p>"
+    },
+    {
+      "h2": "Who Should Pick What?",
+      "html": "<p>If you are someone who dislikes needles or prefers a more convenient option, the T-Patch is likely the best choice for you. Its easy application and no-needle delivery make it a standout option for those seeking to simplify their weight-loss routine. On the other hand, if you are comfortable with injections and prefer traditional delivery methods, compounded tirzepatide may be suitable.</p>"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the T-Patch effective for weight loss?",
+      "a": "The T-Patch delivers tirzepatide, which has been associated with weight loss. However, individual results may vary. Always consult your healthcare provider."
+    },
+    {
+      "q": "How do I apply the T-Patch?",
+      "a": "Simply place the patch on a clean, dry area of your skin. Follow the instructions provided with the product for best results."
+    },
+    {
+      "q": "Are there any side effects of using tirzepatide?",
+      "a": "As with any medication, there may be side effects. Consult your healthcare provider for personalized advice and to discuss any potential risks."
+    },
+    {
+      "q": "Can I switch from injections to the T-Patch?",
+      "a": "Yes, but it's important to consult your healthcare provider before making any changes to your treatment plan."
+    }
+  ],
+  "cta_html": "<p>For a convenient, no-needle solution to weight loss, consider trying the T-Patch from Reset Day.</p>",
+  "_compliance_flags": [],
+  "_source_id": "cmp_us_11",
+  "_persona": "tpatch",
+  "_market": "us",
+  "_lang": "en"
+}

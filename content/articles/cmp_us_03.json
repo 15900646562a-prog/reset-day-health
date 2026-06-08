@@ -1,0 +1,71 @@
+{
+  "slug": "tpatch-vs-hims",
+  "title": "T-Patch vs Hims for Tirzepatide Weight Loss",
+  "meta_description": "Compare T-Patch and Hims for tirzepatide weight loss. Discover which option suits your needs best.",
+  "cluster": "compare",
+  "h1": "T-Patch vs Hims for Tirzepatide Weight Loss",
+  "intro_html": "<p>When considering tirzepatide for weight loss, it's essential to evaluate the different delivery methods available. T-Patch and Hims are two popular options, each with its own advantages and considerations. This comparison will help you make an informed decision based on your preferences and lifestyle.</p>",
+  "table": {
+    "headers": [
+      "Option",
+      "Form",
+      "Active",
+      "Price (approx)",
+      "How to get"
+    ],
+    "rows": [
+      [
+        "T-Patch (Reset Day)",
+        "Topical Patch",
+        "Tirzepatide",
+        "$149 / month · $399 / 3 months · $699 / 6 months",
+        "Order online, no prescription needed"
+      ],
+      [
+        "Hims",
+        "Injection",
+        "Compounded Tirzepatide",
+        "$199–299 / month",
+        "Telehealth subscription"
+      ]
+    ]
+  },
+  "sections": [
+    {
+      "h2": "T-Patch Overview",
+      "html": "<p>T-Patch offers a unique and convenient way to receive tirzepatide through a topical transdermal patch. This no-needle delivery method means you can apply the patch directly to your skin, avoiding the discomfort of injections altogether. With straightforward pricing and a subscription model, T-Patch is designed for users who prioritize ease of use and wish to avoid needles.</p>"
+    },
+    {
+      "h2": "Hims Overview",
+      "html": "<p>Hims provides tirzepatide through an injection method, which requires a telehealth subscription. While the service is accessible and offers a range of compounded medications, many users may find the need for regular injections less convenient. The pricing for Hims varies, and it's important to factor in the potential costs associated with ongoing injections.</p>"
+    },
+    {
+      "h2": "Who Should Pick What?",
+      "html": "<p>If you are needle-averse or simply prefer a more convenient approach to weight loss, T-Patch is the ideal choice. Its topical delivery system means you can easily integrate it into your daily routine without the hassle of injections. Hims may be suitable for those who are comfortable with needles and prefer a traditional injection method, but for many, the convenience of T-Patch will outweigh any benefits of the injection approach.</p>"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the main difference between T-Patch and Hims?",
+      "a": "The main difference is that T-Patch is a topical patch that delivers tirzepatide without needles, while Hims provides an injectable form."
+    },
+    {
+      "q": "How much does T-Patch cost?",
+      "a": "T-Patch costs approximately $149 per month, with options for longer subscriptions at $399 for three months and $699 for six months."
+    },
+    {
+      "q": "Can I get T-Patch without a prescription?",
+      "a": "Yes, T-Patch can be ordered online without the need for a prescription."
+    },
+    {
+      "q": "Is Hims a telehealth service?",
+      "a": "Yes, Hims offers a telehealth subscription for accessing their injectable medications."
+    }
+  ],
+  "cta_html": "<p>Explore the convenience of T-Patch and see if it's the right choice for your weight loss journey with tirzepatide. Visit Reset Day today!</p>",
+  "_compliance_flags": [],
+  "_source_id": "cmp_us_03",
+  "_persona": "tpatch",
+  "_market": "us",
+  "_lang": "en"
+}
