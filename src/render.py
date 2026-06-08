@@ -13,8 +13,14 @@ BASE = os.environ.get("SEO_BASE_URL", "https://learn.resetday.health").rstrip("/
 
 # 每市场的落点(CEO 提供)
 DEST = {
-    "us": "https://tpatch-lp.pages.dev/",
+    "us": "https://tpatch-lp.pages.dev",   # 美国 = 4 变体同域,按簇路由(见下)
     "th": "https://tpatch.sarahbot.fit",
+}
+# 美国 4 变体按意图匹配路由:cluster → (路径, 变体标记)
+#   A·Clinical=/ 暖流量直卖 · B·Quiz=/q 冷流量自测 · C·电商=/shop 比产品 · D·Bold=/bold 社媒
+US_LP_VARIANT = {
+    "compare": ("/shop", "C"),   # 对比页买家在比产品/成分 → 电商页
+    "_default": ("/q", "B"),     # 科普(偏冷)→ 测验自测,边筛边卖
 }
 BTN = {"us": "Get T-Patch — the no-needle tirzepatide →", "th": "ดู T-Patch — ทีร์เซพาไทด์แบบไม่ต้องฉีด →"}
 
@@ -85,8 +91,14 @@ def art_url(d):
     slug = d["slug"]
     return f"{BASE}/th/{slug}.html" if market_of(d) == "th" else f"{BASE}/{slug}.html"
 def dest_url(d):
-    m = market_of(d); base = DEST[m]; sep = "&" if "?" in base else "?"
-    return f"{base}{sep}utm_source=seo&utm_medium=organic&utm_campaign={d['slug']}"
+    m = market_of(d)
+    if m == "th":
+        base = DEST["th"]; variant = ""
+    else:  # 美国:按簇路由到 4 变体之一 + 带变体标记
+        path, vtag = US_LP_VARIANT.get(d.get("cluster", ""), US_LP_VARIANT["_default"])
+        base = DEST["us"] + path; variant = f"&lp_variant={vtag}"
+    sep = "&" if "?" in base else "?"
+    return f"{base}{sep}utm_source=seo&utm_medium=organic&utm_campaign={d['slug']}{variant}"
 
 HEAD = """<header class="site"><div class="wrap"><a class="brand" href="{home}">Reset<b>Day</b></a><span class="langsw"><a href="{base}/index.html">EN</a> · <a href="{base}/th/index.html">ไทย</a></span></div></header>"""
 FOOT = """<footer><div class="wrap">© Reset Day · Health education, not medical advice</div></footer>"""
