@@ -3,3 +3,5 @@
 __pycache__/
 *.pyc
 .DS_Store
+cycle_*.log
+待验收_报告.md
