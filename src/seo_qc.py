@@ -9,7 +9,13 @@ from pathlib import Path
 ARTICLES = Path(__file__).resolve().parent.parent / "content" / "articles"
 
 PRESC = re.compile(r"prescription|prescription-free|ใบสั่ง", re.I)
-EQUIV = re.compile(r"same as (mounjaro|wegovy|zepbound|ozempic)|equivalent to (mounjaro|wegovy|zepbound|ozempic)|FDA[- ]approved|\bcure[ds]?\b|\bmiracle\b|\bguarantee", re.I)
+# 等同性/cure/miracle = 硬伤(渲染不会兜)。guarantee/FDA-approved 渲染会中性化,故先套同样中性化再判(与上线文本一致)。
+EQUIV = re.compile(r"same as (mounjaro|wegovy|zepbound|ozempic)|equivalent to (mounjaro|wegovy|zepbound|ozempic)|\bcure[ds]?\b|\bmiracle\b", re.I)
+NEUTRALIZE = [(re.compile(r"\bguarantee(d|s)?\b", re.I), " "), (re.compile(r"\bFDA[- ]approved\b", re.I), " ")]
+def as_published(t):
+    for rx, rep in NEUTRALIZE:
+        t = rx.sub(rep, t)
+    return t
 
 def full_text(d):
     return " ".join([
@@ -25,8 +31,8 @@ def check(d):
     t = full_text(d)
     if PRESC.search(t):
         fails.append("处方话题")
-    if EQUIV.search(t):
-        fails.append("等同性/FDA/cure/guarantee")
+    if EQUIV.search(as_published(t)):
+        fails.append("等同性/cure/miracle")
     secs = len(d.get("sections", []))
     if secs < 3:
         fails.append(f"薄页(段落{secs})")
