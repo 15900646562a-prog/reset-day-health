@@ -152,6 +152,23 @@ def seed_items():
         out.append({"id": f"cmp_th_{i:02d}", "persona": "tpatch", "angle": q, "mode": "compare",
                     "source_text": f"เขียนบทความเปรียบเทียบสำหรับคำค้นหานี้: {q}",
                     "market": "th", "lang": "th", "slug_hint": slug})
+    # 外部追加种子(ideate 自动构思的新长尾词 → 常态化产新内容)
+    extra = ROOT / "content" / "seeds_extra.json"
+    if extra.exists():
+        try:
+            for s in json.load(open(extra)):
+                slug = s.get("slug")
+                if not slug:
+                    continue
+                cmp = s.get("mode") == "compare"
+                q = s.get("query", "")
+                out.append({"id": slug, "persona": "tpatch", "angle": q,
+                            "source_text": (f"Write a comparison article for this query: {q}" if cmp
+                                            else f"Write a search-optimised article for this query: {q}"),
+                            "market": s.get("market", "us"), "lang": s.get("lang", "en"),
+                            "slug_hint": slug, **({"mode": "compare"} if cmp else {})})
+        except Exception:
+            pass
     return out
 
 

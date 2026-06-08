@@ -6,6 +6,9 @@ cd "$(dirname "$0")"
 export SEO_BASE_URL="${SEO_BASE_URL:-https://learn.resetday.health}"
 LOG="cycle_$(date -u +%Y%m%d_%H%M).log"
 
+echo "== [0/4] 构思新长尾选题(自动产新内容的源头) ==" | tee -a "$LOG"
+python3 src/ideate.py 2>&1 | tee -a "$LOG" || echo "ideate 失败,继续用现有种子" | tee -a "$LOG"
+
 echo "== [1/4] 生产 ==" | tee -a "$LOG"
 python3 src/seo_build.py 2>&1 | tee -a "$LOG"
 
@@ -24,8 +27,18 @@ fi
 echo "== [3/4] 渲染 ==" | tee -a "$LOG"
 python3 src/render.py 2>&1 | tee -a "$LOG"
 
-echo "== [4/4] 推 pending-review 分支(待 COO 验收,不直接上线) ==" | tee -a "$LOG"
+echo "== [4/4] 提交到本地 pending-review(不推 GitHub;COO 验收时才发布) ==" | tee -a "$LOG"
 git add -A
-git commit -q -m "cycle: 自动生产一轮(过 seo_qc)$(date -u +%F)" || { echo "无改动"; exit 0; }
-git push -q origin HEAD:pending-review 2>&1 | tee -a "$LOG"
-echo "✅ 本轮已进 pending-review。COO 验收+考评后 merge→main 才发布。" | tee -a "$LOG"
+if git commit -q -m "cycle: 自动生产一轮(过 seo_qc)$(date -u +%F)"; then
+  git branch -f pending-review HEAD
+  # 待验收报告(COO 来读)
+  {
+    echo "# 待验收 · SEO 自动生产 ($(date -u '+%F %H:%M UTC'))"
+    echo "- 已过 seo_qc 自动闸。本地 commit: $(git rev-parse --short HEAD)"
+    echo "- 页数: $(ls docs/*.html docs/th/*.html 2>/dev/null | wc -l)"
+    echo "- COO 验收: 本地 \`git fetch ssh://tiktok-core/root/seo_factory pending-review\` → 抽检+考评 → push origin main 发布。"
+  } > 待验收_报告.md
+  echo "✅ 本轮进本地 pending-review(未推)。等 COO 验收发布。" | tee -a "$LOG"
+else
+  echo "本轮无改动,跳过。" | tee -a "$LOG"
+fi
