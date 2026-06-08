@@ -184,13 +184,13 @@ VOICE / GROUNDING RULES:
 - Include a brief "talk to your healthcare provider" line.
 
 PRODUCT — T-Patch (bridge the article to it; coherent story, see R13):
-- T-Patch is a NO-NEEDLE, topical (wear-on-skin) daily weight-management patch with a plant-based formula. It's for people who want a needle-free, simple routine instead of weekly injections.
+- T-Patch is a NO-NEEDLE, topical (wear-on-skin) ONCE-WEEKLY weight-management patch (one fresh patch every 7 days) with a plant-based formula. It's for people who want a needle-free, simple routine instead of weekly injections.
 - 🔴 Do NOT claim T-Patch IS tirzepatide, "contains tirzepatide", is "topical tirzepatide" / "a tirzepatide patch", "delivers tirzepatide", or is the same as / equivalent to / a replacement for Mounjaro/Zepbound/Ozempic/Wegovy or any prescription drug. Do NOT tell readers to "get tirzepatide". (These are false-product claims under active FDA enforcement.)
 - You MAY discuss tirzepatide / GLP-1 / Mounjaro etc. EDUCATIONALLY as the topic the reader searched. Position T-Patch as "the no-needle patch / a needle-free routine", NOT as the drug.
 - If the query itself says "tirzepatide patch" or "topical tirzepatide": clarify that tirzepatide is an injectable medication; T-Patch is a SEPARATE no-needle, topical weight-management patch (plant-based) — present it as the needle-free option people look for, but do NOT equate the two or call T-Patch a tirzepatide patch.
 - NEVER write T-Patch and "tirzepatide" as the same thing in one sentence (no "T-Patch tirzepatide", no "T-Patch delivers tirzepatide").
 - Bridge to T-Patch in TWO places:
-  1) A body section connecting the topic to a no-needle approach — "if you'd rather skip the weekly needles, T-Patch is a wear-and-forget patch you use daily."
+  1) A body section connecting the topic to a no-needle approach — "if you'd rather skip the weekly needles, T-Patch is a once-weekly wear-and-forget patch (change it every 7 days)."
   2) cta_html — invite the reader to try T-Patch / join the Reset Day community. Calm, not hypey.
 
 KEYWORDS — use the real names people search, EDUCATIONALLY (for ranking), never as a product claim:
@@ -230,7 +230,7 @@ Write an honest, useful COMPARISON / "best of" article for people weighing a no-
 
 HARD RULES:
 - Be factually fair to competitors (accurate, not trash-talk). Inaccurate competitor facts = legal risk.
-- T-Patch's honest differentiator = NO NEEDLE, no weekly shots, lower cost, simple daily routine, plant-based. Position it for people who want a needle-free, simpler option than the injection clinics. In the table "Active" column, T-Patch = "plant-based blend" (NOT tirzepatide).
+- T-Patch's honest differentiator = NO NEEDLE, no weekly shots, lower cost, simple once-weekly routine (one patch per week), plant-based. Position it for people who want a needle-free, simpler option than the injection clinics. In the table "Active" column, T-Patch = "plant-based blend" (NOT tirzepatide).
 - 🔴 NEVER call T-Patch tirzepatide / "topical tirzepatide" / a "tirzepatide patch", and NEVER say it contains/delivers/replaces a prescription drug. The comparison frame = "a no-needle weight-management patch vs the injection route" (format/cost/convenience), NOT "same drug, different delivery".
 - 🔴 NEVER mention "prescription", "no prescription", "prescription-free", or "without a prescription" ANYWHERE. For "How to get": T-Patch = "Order online, ships to your door"; competitors = "Online telehealth, subscription".
 - Do NOT claim "the same as"/"equivalent to" Mounjaro/Zepbound/Wegovy or FDA approval. (Under active FDA enforcement.)

@@ -16,11 +16,16 @@ DEST = {
     "us": "https://tpatch-lp.pages.dev",   # 美国 = 4 变体同域,按簇路由(见下)
     "th": "https://tpatch.sarahbot.fit",
 }
-# 美国 4 变体按意图匹配路由:cluster → (路径, 变体标记)
-#   A·Clinical=/ 暖流量直卖 · B·Quiz=/q 冷流量自测 · C·电商=/shop 比产品 · D·Bold=/bold 社媒
+# 美国变体路由 — 按 INTEGRATION.md #4 成交页意图映射:a=/ b=/q c=/shop d=/bold
+#   cluster → (变体路径, intent 标签);页面按路径自识变体,订单按 intent 细归因
 US_LP_VARIANT = {
-    "compare": ("/shop", "C"),   # 对比页买家在比产品/成分 → 电商页
-    "_default": ("/q", "B"),     # 科普(偏冷)→ 测验自测,边筛边卖
+    "compare": ("/", "comparison"),                       # a Clinical:理性比较/vs/数据
+    "pcos-insulin": ("/q", "pcos"),                       # b Quiz:适不适合/个性化
+    "life-after-the-shot": ("/bold", "post_shot"),        # d Bold:无针/简单
+    "affordable-alternatives": ("/bold", "cant_afford"),  # d Bold:打不起针
+    "midlife-metabolism": ("/bold", "plateau"),           # d Bold:平台期/40+
+    "food-noise": ("/bold", "food_noise"),                # d Bold:下午饿/食欲
+    "_default": ("/q", "general"),
 }
 BTN = {"us": "Get T-Patch — the no-needle tirzepatide →", "th": "ดู T-Patch — ทีร์เซพาไทด์แบบไม่ต้องฉีด →"}
 
@@ -95,8 +100,8 @@ def dest_url(d):
     if m == "th":
         base = DEST["th"]; variant = ""
     else:  # 美国:按簇路由到 4 变体之一 + 带变体标记
-        path, vtag = US_LP_VARIANT.get(d.get("cluster", ""), US_LP_VARIANT["_default"])
-        base = DEST["us"] + path; variant = f"&lp_variant={vtag}"
+        path, intent = US_LP_VARIANT.get(d.get("cluster", ""), US_LP_VARIANT["_default"])
+        base = DEST["us"] + path; variant = f"&utm_content={d.get('cluster','')}&intent={intent}"
     sep = "&" if "?" in base else "?"
     return f"{base}{sep}utm_source=seo&utm_medium=organic&utm_campaign={d['slug']}{variant}"
 
