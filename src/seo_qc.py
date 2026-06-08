@@ -8,9 +8,10 @@ from pathlib import Path
 
 ARTICLES = Path(__file__).resolve().parent.parent / "content" / "articles"
 
-PRESC = re.compile(r"prescription|prescription-free|ใบสั่ง", re.I)
-# R13:只拦"T-Patch = 替尔泊肽/含药"的真声明;允许把 tirzepatide 当搜索话题讨论
-DRUGCLAIM = re.compile(r"(contains|delivers?|provides?)\s+tirzepatide|same (active )?molecule|t-?patch[^.!?]{0,55}\btirzepatide\b|\btirzepatide\b[^.!?]{0,55}t-?patch", re.I)
+# R14:tirzepatide 为准 → 不再拦 tirzepatide。只拦"无处方/OTC"假声明(产品是 Rx-via-telehealth)
+PRESC = re.compile(r"\bno prescription\b|prescription-free|without (a |any )?prescription|over-the-counter|\bOTC\b", re.I)
+# 编造疗效数字(无真实研究前不许放百分比)
+EFFICACY = re.compile(r"\b\d{1,3}(\.\d)?\s*%\s*(of )?(weight|body|fat|loss|reduction|patients|users|people)", re.I)
 # 等同性/cure/miracle = 硬伤(渲染不会兜)。guarantee/FDA-approved 渲染会中性化,故先套同样中性化再判(与上线文本一致)。
 EQUIV = re.compile(r"same as (mounjaro|wegovy|zepbound|ozempic)|equivalent to (mounjaro|wegovy|zepbound|ozempic)|\bcure[ds]?\b|\bmiracle\b", re.I)
 NEUTRALIZE = [(re.compile(r"\bguarantee(d|s)?\b", re.I), " "), (re.compile(r"\bFDA[- ]approved\b", re.I), " ")]
@@ -32,11 +33,11 @@ def check(d):
     fails = []
     t = full_text(d)
     if PRESC.search(t):
-        fails.append("处方话题")
+        fails.append("无处方/OTC假声明(违R14)")
     if EQUIV.search(as_published(t)):
         fails.append("等同性/cure/miracle")
-    if DRUGCLAIM.search(t):
-        fails.append("硬称替尔泊肽/含药(违R13)")
+    if EFFICACY.search(t):
+        fails.append("编造疗效%(需真实研究)")
     secs = len(d.get("sections", []))
     if secs < 3:
         fails.append(f"薄页(段落{secs})")
