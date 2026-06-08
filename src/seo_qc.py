@@ -9,6 +9,8 @@ from pathlib import Path
 ARTICLES = Path(__file__).resolve().parent.parent / "content" / "articles"
 
 PRESC = re.compile(r"prescription|prescription-free|ใบสั่ง", re.I)
+# R13:只拦"T-Patch = 替尔泊肽/含药"的真声明;允许把 tirzepatide 当搜索话题讨论
+DRUGCLAIM = re.compile(r"(contains|delivers?|provides?)\s+tirzepatide|same (active )?molecule|t-?patch[^.!?]{0,55}\btirzepatide\b|\btirzepatide\b[^.!?]{0,55}t-?patch", re.I)
 # 等同性/cure/miracle = 硬伤(渲染不会兜)。guarantee/FDA-approved 渲染会中性化,故先套同样中性化再判(与上线文本一致)。
 EQUIV = re.compile(r"same as (mounjaro|wegovy|zepbound|ozempic)|equivalent to (mounjaro|wegovy|zepbound|ozempic)|\bcure[ds]?\b|\bmiracle\b", re.I)
 NEUTRALIZE = [(re.compile(r"\bguarantee(d|s)?\b", re.I), " "), (re.compile(r"\bFDA[- ]approved\b", re.I), " ")]
@@ -18,10 +20,10 @@ def as_published(t):
     return t
 
 def full_text(d):
-    return " ".join([
+    return ". ".join([  # 字段块间断句,避免跨字段(表格↔正文)邻近误报
         str(d.get("title", "")), str(d.get("meta_description", "")), str(d.get("intro_html", "")),
         " ".join(s.get("html", "") for s in d.get("sections", [])),
-        " ".join(" ".join(map(str, r)) for r in d.get("table", {}).get("rows", [])),
+        ". ".join(" ".join(map(str, r)) for r in d.get("table", {}).get("rows", [])),  # 行间断句,避免跨行邻近误报
         " ".join(q.get("a", "") for q in d.get("faq", [])),
         str(d.get("cta_html", "")),
     ])
@@ -33,6 +35,8 @@ def check(d):
         fails.append("处方话题")
     if EQUIV.search(as_published(t)):
         fails.append("等同性/cure/miracle")
+    if DRUGCLAIM.search(t):
+        fails.append("硬称替尔泊肽/含药(违R13)")
     secs = len(d.get("sections", []))
     if secs < 3:
         fails.append(f"薄页(段落{secs})")
