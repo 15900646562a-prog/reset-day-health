@@ -163,6 +163,7 @@ Write a genuinely useful, original SEO article based on the SOURCE material. Tar
 VOICE / GROUNDING RULES:
 - Voice = a knowledgeable health educator. Use "research suggests", "studies indicate". Do not claim to personally be a licensed physician.
 - Keep claims grounded in fact: do NOT fabricate efficacy percentages or result numbers, do NOT claim "FDA-approved", no "guaranteed" or "miracle cure" language. These are lies that get pages taken down with zero SEO benefit.
+- 🔴 NEVER mention "prescription" / "no prescription" / "prescription-free" / "without a prescription". It is off-message and dilutes the professional positioning. Describe T-Patch simply as a no-needle topical patch you order online.
 - Include a brief "talk to your healthcare provider" line.
 
 PRODUCT — T-Patch (this is the whole point of the article):
@@ -197,11 +198,11 @@ Output ONLY the JSON object.""" % "\n".join(f"- {k}: {v}" for k, v in CLUSTERS.i
 # ---- 对比/评测页(compare 模式)----------------------------------
 TPATCH_PRICING = "$149 / month · $399 / 3 months · $699 / 6 months"
 COMPETITOR_FACTS = """ACCURATE COMPETITOR FACTS (use ONLY these; never invent prices/claims; label prices "approx" and add "check each provider's site for current pricing"):
-- T-Patch (Reset Day): TOPICAL transdermal patch, NO NEEDLE. Active: tirzepatide. Price: %s. Direct, no weekly injection.
-- Medvi: injection + oral tablet. Compounded semaglutide/tirzepatide. Approx semaglutide $179→$299/mo, tirzepatide $279→$399/mo. Telehealth prescription, subscription.
-- Hims: injection. Compounded semaglutide/tirzepatide. Approx semaglutide $149–199/mo, tirzepatide $199–299/mo. Subscription. (Context: referred to DOJ Feb 2026; sued by Novo Nordisk.)
-- Henry Meds: injection. Compounded semaglutide ~$297/mo. Subscription.
-- Ro: injection. Semaglutide. Telehealth subscription.""" % TPATCH_PRICING
+- T-Patch (Reset Day): TOPICAL transdermal patch, NO NEEDLE. Active: tirzepatide. Price: %s. How to get = "Order online, ships to your door".
+- Medvi: injection + oral tablet. Compounded semaglutide/tirzepatide. Approx semaglutide $179→$299/mo, tirzepatide $279→$399/mo. How to get = "Online telehealth consult, monthly subscription".
+- Hims: injection. Compounded semaglutide/tirzepatide. Approx semaglutide $149–199/mo, tirzepatide $199–299/mo. How to get = "Online telehealth, subscription". (Context: referred to DOJ Feb 2026; sued by Novo Nordisk.)
+- Henry Meds: injection. Compounded semaglutide ~$297/mo. How to get = "Online telehealth, subscription".
+- Ro: injection. Semaglutide. How to get = "Online telehealth, subscription".""" % TPATCH_PRICING
 
 COMPARE_SYSTEM = """You are a health-content writer for "Reset Day", maker of T-Patch — a topical (transdermal), NO-NEEDLE tirzepatide patch.
 
@@ -212,6 +213,7 @@ Write an honest, useful COMPARISON / "best of" article for people choosing how t
 HARD RULES:
 - Be factually fair to competitors (accurate, not trash-talk). Inaccurate competitor facts = legal risk.
 - T-Patch's honest differentiator = TOPICAL, NO NEEDLE, no weekly injection, simple. Position it for people who hate needles / want convenience.
+- 🔴 NEVER mention "prescription", "no prescription", "prescription-free", or "without a prescription" ANYWHERE (table, prose, FAQ). It is off-message and dilutes the professional positioning. For the "How to get" column use the neutral access wording from the facts (T-Patch = "Order online, ships to your door"; competitors = "Online telehealth, subscription"). Differentiate ONLY on no-needle / topical / convenience.
 - Do NOT claim T-Patch is "the same as" or "equivalent to" Mounjaro/Zepbound/Wegovy, and do NOT claim FDA approval. Differentiate on the no-needle delivery, not drug-equivalence. (This exact equivalence wording is under active FDA enforcement.)
 - No fabricated efficacy numbers, no guarantees, no "cure". Include a "talk to your healthcare provider" line.
 - Prices labelled "approx"; add "check each provider's official site for current pricing".
