@@ -52,8 +52,20 @@ def main():
     k, b = load_creds()
     client = OpenAI(api_key=k, base_url=b)
     sample = "\n".join(f"- {a}" for a in angles[:60])
+    content = PROMPT % (N, sample)
+    # Phase 2: 有 GSC 效果数据时,让构思追"已出曝光的赢家词"+补低点击的角度
+    gd = ROOT / "content" / "gsc_data.json"
+    if gd.exists():
+        try:
+            tq = json.load(open(gd)).get("top_queries", [])
+        except Exception:
+            tq = []
+        if tq:
+            winners = "; ".join(f"{x['query']}(曝光{x['impressions']}/点击{x['clicks']})" for x in tq[:15])
+            content += ("\n\nDATA — queries ALREADY getting Google impressions. Prioritise EXPANDING these winning themes; "
+                        "for ones with impressions but low clicks, propose sharper-targeted new angles:\n" + winners)
     r = client.chat.completions.create(model=MODEL, response_format={"type": "json_object"},
-        temperature=0.9, messages=[{"role": "user", "content": PROMPT % (N, sample)}])
+        temperature=0.9, messages=[{"role": "user", "content": content}])
     import re
     seeds = json.loads(r.choices[0].message.content).get("seeds", [])
     def ok_slug(sl):  # 退化 slug(无实义,如 th-th)跳过

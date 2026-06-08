@@ -5,3 +5,4 @@ __pycache__/
 .DS_Store
 cycle_*.log
 待验收_报告.md
+content/gsc_creds.json

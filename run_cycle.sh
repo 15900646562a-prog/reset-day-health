@@ -11,7 +11,10 @@ git fetch -q origin main 2>/dev/null || true
 git rev-parse --verify -q pending-review >/dev/null || git branch pending-review
 git checkout -q pending-review
 
-echo "== [0/4] 构思新长尾选题(自动产新内容的源头) ==" | tee -a "$LOG"
+echo "== [0a] 拉 GSC 效果数据(Phase2;无凭据则优雅跳过) ==" | tee -a "$LOG"
+python3 src/gsc_fetch.py 2>&1 | tee -a "$LOG" || true
+
+echo "== [0/4] 构思新长尾选题(有 GSC 数据则追赢家词) ==" | tee -a "$LOG"
 python3 src/ideate.py 2>&1 | tee -a "$LOG" || echo "ideate 失败,继续用现有种子" | tee -a "$LOG"
 
 echo "== [1/4] 生产 ==" | tee -a "$LOG"
