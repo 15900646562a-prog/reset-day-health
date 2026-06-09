@@ -51,6 +51,9 @@ if ! python3 src/render.py 2>&1 | tee -a "$LOG"; then
   exit 1
 fi
 
+# 视频承接页(docs/v/ + docs/th/v/)——静态,非致命,失败保留旧版不挡发布
+python3 src/build_video_lp.py 2>&1 | tee -a "$LOG" || echo "⚠️ 视频承接页生成失败(非致命)" | tee -a "$LOG"
+
 echo "== [4] 自动发布(过闸=上线) ==" | tee -a "$LOG"
 git add -A
 if git commit -q -m "auto: 产+过闸发布 $(date -u +%F-%H%M)"; then
