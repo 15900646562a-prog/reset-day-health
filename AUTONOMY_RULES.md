@@ -1,5 +1,6 @@
 # SEO Factory 自治规则(一次性写死;VPS 无人值守跑,COO 只周期验收)
 
+> 🔴 **纯 cron + 脚本进程,不依赖任何 VPS agent(西西/openclaw)。** VPS 上 `crontab` 定时直接跑 `run_cycle.sh`(bash→python 脚本链),全程无 agent 介入。COO 验收由 **Mac 端定时任务**(scheduled-task `seo-autonomy-acceptance`)做,也不经 VPS agent。
 > 前提:COO 不能持续触达 VPS(一天有效沟通 ≤2 次)。所以规则必须自包含、脱离 COO 也能跑。
 > **质检闸 `seo_qc` = 唯一发布门。** 过=自动上线;不过=不发、丢坏批、写 ESCALATION 等 COO。
 
