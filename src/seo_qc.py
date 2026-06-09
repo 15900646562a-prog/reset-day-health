@@ -12,6 +12,8 @@ ARTICLES = Path(__file__).resolve().parent.parent / "content" / "articles"
 PRESC = re.compile(r"\bno prescription\b|prescription-free|without (a |any )?prescription|over-the-counter|\bOTC\b", re.I)
 # 编造疗效数字(无真实研究前不许放百分比)
 EFFICACY = re.compile(r"\b\d{1,3}(\.\d)?\s*%\s*(of )?(weight|body|fat|loss|reduction|patients|users|people)", re.I)
+# R14:产品=tirzepatide,绝不讲"植物配方/botanical"(贴错标)
+BOTANICAL = re.compile(r"plant-based|botanical|plant extract|plant fiber|green tea extract|sea kelp|植物", re.I)
 # 等同性/cure/miracle = 硬伤(渲染不会兜)。guarantee/FDA-approved 渲染会中性化,故先套同样中性化再判(与上线文本一致)。
 EQUIV = re.compile(r"same as (mounjaro|wegovy|zepbound|ozempic)|equivalent to (mounjaro|wegovy|zepbound|ozempic)|\bcure[ds]?\b|\bmiracle\b", re.I)
 NEUTRALIZE = [(re.compile(r"\bguarantee(d|s)?\b", re.I), " "), (re.compile(r"\bFDA[- ]approved\b", re.I), " ")]
@@ -38,6 +40,8 @@ def check(d):
         fails.append("等同性/cure/miracle")
     if EFFICACY.search(t):
         fails.append("编造疗效%(需真实研究)")
+    if BOTANICAL.search(t):
+        fails.append("植物配方/botanical(违R14,产品=tirzepatide)")
     secs = len(d.get("sections", []))
     if secs < 3:
         fails.append(f"薄页(段落{secs})")
