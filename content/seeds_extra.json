@@ -26,5 +26,47 @@
     "market": "us",
     "lang": "en",
     "mode": "compare"
+  },
+  {
+    "query": "T-Patch vs Medvi: Cost-effectiveness and User Experience",
+    "slug": "t-patch-vs-medvi-cost-th",
+    "market": "US",
+    "lang": "en",
+    "mode": "compare"
+  },
+  {
+    "query": "Understanding TIRZEPATIDE Mechanism of Action for Weight Loss",
+    "slug": "understanding-tirzepatide-mechanism",
+    "market": "US",
+    "lang": "en",
+    "mode": "article"
+  },
+  {
+    "query": "Comparison of Tirzepatide Patch and Oral Alternatives",
+    "slug": "tirzepatide-patch-vs-oral-alternatives",
+    "market": "US",
+    "lang": "en",
+    "mode": "compare"
+  },
+  {
+    "query": "แผ่นแปะทีร์เซพาไทด์เหมาะกับผู้หญิงที่เป็น PCOS หรือไม่?",
+    "slug": "t-patch-pcos-benefits-th",
+    "market": "TH",
+    "lang": "th",
+    "mode": "article"
+  },
+  {
+    "query": "T-Patch vs Other Topical Weight Loss Solutions",
+    "slug": "t-patch-vs-topical-weight-loss-solutions",
+    "market": "US",
+    "lang": "en",
+    "mode": "compare"
+  },
+  {
+    "query": "ผลลัพธ์ระยะยาวของการใช้แปะแผ่นทีร์เซพาไทด์",
+    "slug": "long-term-results-tirzepatide-patch-th",
+    "market": "TH",
+    "lang": "th",
+    "mode": "article"
   }
 ]
