@@ -20,23 +20,52 @@ DEST = {
 #   cluster → (变体路径, intent 标签);页面按路径自识变体,订单按 intent 细归因
 US_LP_VARIANT = {
     "compare": ("/", "comparison"),                       # a Clinical:理性比较/vs/数据
+    "how-it-works": ("/q", "education"),                  # b Quiz:教育期→资格化(机制/科普页)
     "pcos-insulin": ("/q", "pcos"),                       # b Quiz:适不适合/个性化
-    "life-after-the-shot": ("/bold", "post_shot"),        # d Bold:无针/简单
+    "life-after-the-shot": ("/bold", "post_shot"),        # d Bold:停针之后
     "affordable-alternatives": ("/bold", "cant_afford"),  # d Bold:打不起针
     "midlife-metabolism": ("/bold", "plateau"),           # d Bold:平台期/40+
     "food-noise": ("/bold", "food_noise"),                # d Bold:下午饿/食欲
+    "no-needle": ("/bold", "no_needle"),                  # d Bold:无针利益/免注射
     "_default": ("/q", "general"),
 }
 BTN = {"us": "Get T-Patch — the no-needle tirzepatide →", "th": "ดู T-Patch — ทีร์เซพาไทด์แบบไม่ต้องฉีด →"}
 
+# 顺序=首页分簇展示顺序(理性→教育→人群→情绪/利益)
 CLUSTER_NAMES = {
     "compare": "Compare & Reviews",
+    "how-it-works": "How It Works",
+    "pcos-insulin": "PCOS & Insulin",
+    "no-needle": "The No-Needle Patch",
+    "food-noise": "Food Noise & Cravings",
+    "midlife-metabolism": "Midlife Metabolism",
     "life-after-the-shot": "Life After the Shot",
     "affordable-alternatives": "Affordable Alternatives",
-    "midlife-metabolism": "Midlife Metabolism",
-    "pcos-insulin": "PCOS & Insulin",
-    "food-noise": "Food Noise & Cravings",
 }
+
+_DRUGS = ("mounjaro", "ozempic", "zepbound", "wegovy", "semaglutide")
+def classify(d):
+    """据内容判定意图簇,覆盖生成期 LLM 的噪声标签 → 决定成交页路由 + 首页结构。
+    优先级:受体科普 > 停针后(强意图)> 对比 > 人群 > 机制/科普 > 食欲 > 代谢 > 无针利益(兜底)。"""
+    t = " ".join([d.get("slug", ""), d.get("h1", ""), d.get("title", "")]).lower()
+    has = lambda *k: any(x in t for x in k)
+    vs = bool(re.search(r"\bvs\b|-vs-|vs\.", t))
+    if has("gip", "gcgr", "receptor") and has("glp", "agonis", "receptor") and not has("patch", "hims", "medvi", "henry", "semaglutide"):
+        return "how-it-works"
+    if has("stalled", "regain", "stopping", "stopped", "life after", "life-after"):
+        return "life-after-the-shot"
+    if vs or has("compar", "best ", "cheapest", "hims", "medvi", "henry", "-meds", "alternatives to") or (has("alternative") and has(*_DRUGS)):
+        return "compare"
+    if has("pcos", "insulin"):
+        return "pcos-insulin"
+    if has("how tirzepatide works", "how-tirzepatide", "mechanism", "what is ", "what-is-", "triple agonist", "dual agonis", "receptor", "gip", "gcgr", "agonis", "side effect", "side-effect") \
+       or (has("understanding") and has("mechanism", "receptor", "work", "gip", "gcgr", "agonis")):
+        return "how-it-works"
+    if has("craving", "food noise", "food-noise", "appetite", "late-night", "late night", "hunger", "snack"):
+        return "food-noise"
+    if has("metabol", "energy", "midlife", "menopaus", "rhythm"):
+        return "midlife-metabolism"
+    return "no-needle"
 
 
 def render_table(t):
@@ -122,6 +151,7 @@ def load_articles():
         else:
             seen[key] = 1
         d["slug"] = slug
+        d["cluster"] = classify(d)   # 覆盖生成期噪声簇 → 路由/结构按真实意图
         arts.append(d)
     return arts
 
