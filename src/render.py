@@ -126,7 +126,43 @@ def load_articles():
     return arts
 
 
-def render_article(d, siblings):
+def dedupe_titles(arts):
+    """防自相残杀:撞标题的页改用更具体的 H1(对比页 H1 通常独特);仍撞则数字兜底。
+    LLM 常照抄 prompt 里的标题示例致多页同标题,此为渲染层硬保险(不依赖模型守规矩)。"""
+    from collections import Counter
+    tc = Counter((a.get("title") or "").strip().lower() for a in arts)
+    used = set()
+    for a in arts:
+        t = (a.get("title") or "").strip()
+        if tc[t.lower()] > 1 and (a.get("h1") or "").strip():
+            t = a["h1"].strip()           # 用独特的 H1 顶替模板化标题
+        base, key, n = t, t.lower(), 2
+        while key in used:                # 最终唯一性兜底(保证终止)
+            t = f"{base} ({n})"; key = t.lower(); n += 1
+        used.add(key); a["title"] = t
+    return arts
+
+
+def build_hreflang(arts):
+    """仅对真·翻译对(US 'X' ↔ TH 'X-th')发 hreflang;非对子不发(避免误导 Google)。"""
+    by = {(a.get("_market", "us"), a["slug"]): a for a in arts}
+    out = {}
+    for a in arts:
+        if market_of(a) != "us":
+            continue
+        th = by.get(("th", f"{a['slug']}-th"))
+        if not th:
+            continue
+        us_url, th_url = art_url(a), art_url(th)
+        tags = (f'<link rel="alternate" hreflang="en" href="{us_url}">'
+                f'<link rel="alternate" hreflang="th" href="{th_url}">'
+                f'<link rel="alternate" hreflang="x-default" href="{us_url}">')
+        out[("us", a["slug"])] = tags
+        out[("th", th["slug"])] = tags
+    return out
+
+
+def render_article(d, siblings, hreflang=""):
     lang = d.get("_lang", "en"); url = art_url(d)
     secs = "".join(f"<h2>{esc(s.get('h2',''))}</h2>{clean(s.get('html',''))}" for s in d.get("sections", []))
     faq = d.get("faq", [])
@@ -157,7 +193,7 @@ def render_article(d, siblings):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(d.get('title',''))} | Reset Day</title>
 <meta name="description" content="{esc(d.get('meta_description',''))}">
-<link rel="canonical" href="{url}">
+<link rel="canonical" href="{url}">{hreflang}
 <meta property="og:type" content="article"><meta property="og:title" content="{esc(d.get('title',''))}">
 <meta property="og:description" content="{esc(d.get('meta_description',''))}"><meta property="og:url" content="{url}">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>{faq_ld}
@@ -221,6 +257,8 @@ def render_index(arts, lang):
 def main():
     (SITE / "th").mkdir(parents=True, exist_ok=True)
     arts = load_articles()
+    dedupe_titles(arts)              # 标题唯一性硬保险(防自相残杀)
+    hreflang = build_hreflang(arts)  # 真·翻译对的 hreflang
     us = [a for a in arts if a.get("_market", "us") != "th"]
     th = [a for a in arts if a.get("_market") == "th"]
     by = defaultdict(list)
@@ -232,7 +270,7 @@ def main():
         mk = a.get("_market", "us")
         siblings = [s for s in by[(mk, a.get("cluster", "food-noise"))] if s["slug"] != a["slug"]]
         out = (SITE / "th" / f"{a['slug']}.html") if mk == "th" else (SITE / f"{a['slug']}.html")
-        pages.append((out, render_article(a, siblings)))
+        pages.append((out, render_article(a, siblings, hreflang.get((mk, a["slug"]), ""))))
         urls.append(art_url(a))
     pages.append((SITE / "index.html", render_index(us, "en"))); urls.append(f"{BASE}/index.html")
     pages.append((SITE / "th" / "index.html", render_index(th, "th"))); urls.append(f"{BASE}/th/index.html")

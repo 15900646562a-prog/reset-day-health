@@ -237,7 +237,7 @@ HARD RULES:
 
 Return STRICT JSON:
 - slug: ascii kebab-case (will be overridden by a hint if provided)
-- title: SEO title (<=65 chars), front-loads the query (e.g. "Best No-Needle Tirzepatide 2026")
+- title: SEO title (<=65 chars), UNIQUE to THIS comparison — front-load THIS page's specific angle/competitor and mirror its own h1 (e.g. an Ozempic page: "Ozempic Alternatives Without Needles (2026)"; a patch-vs-pills page: "Tirzepatide Patch vs Pills: Which Wins?"). 🔴 NEVER reuse a generic template like "Best No-Needle Tirzepatide 2026" across pages — duplicate/near-duplicate titles make pages cannibalise each other in search. Each title must be visibly distinct from sibling compare pages.
 - meta_description: <=155 chars
 - cluster: "compare"
 - h1
