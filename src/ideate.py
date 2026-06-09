@@ -73,6 +73,12 @@ def main():
         return len(core) >= 4
     cleaned = []
     for s in seeds:
+        # 归一化:LLM 常无视"小写"约束(曾返 market='TH' 致渲染崩+误路由)。统一小写,市场只允 us/th。
+        s["market"] = (s.get("market") or "us").strip().lower()
+        if s["market"] not in ("us", "th"):
+            s["market"] = "us"
+        s["lang"] = (s.get("lang") or "en").strip().lower()
+        s["mode"] = (s.get("mode") or "article").strip().lower()
         sl = re.sub(r"[^a-z0-9-]", "", (s.get("slug", "")).lower().replace(" ", "-")).strip("-")
         if s.get("lang") == "th" and sl and not sl.endswith("-th"):
             sl += "-th"

@@ -91,7 +91,7 @@ table.cmp tbody tr:first-child td{font-weight:600;background:oklch(96% 0.03 165)
 """
 
 def esc(s): return html.escape(s or "", quote=True)
-def market_of(d): return d.get("_market", "us")
+def market_of(d): return (d.get("_market") or "us").strip().lower()  # 防 LLM 返大写'TH'致 KeyError/误路由
 def art_url(d):
     slug = d["slug"]
     return f"{BASE}/th/{slug}.html" if market_of(d) == "th" else f"{BASE}/{slug}.html"
@@ -114,7 +114,8 @@ def load_articles():
     for f in sorted(glob.glob(str(ARTICLES / "*.json"))):
         d = json.load(open(f))
         slug = d.get("slug") or Path(f).stem
-        mk = d.get("_market", "us")
+        mk = (d.get("_market") or "us").strip().lower()  # 归一化:旧文章可能含大写'TH'
+        d["_market"] = mk
         key = (mk, slug)
         if key in seen:
             seen[key] += 1; slug = f"{slug}-{seen[key]}"
@@ -218,26 +219,33 @@ def render_index(arts, lang):
 
 
 def main():
-    # 清旧 html(防孤儿页),保留 CNAME/.nojekyll/keyfile/robots/sitemap 等非 html
-    (SITE / "th").mkdir(exist_ok=True)
-    for old in list(SITE.glob("*.html")) + list((SITE / "th").glob("*.html")):
-        old.unlink()
+    (SITE / "th").mkdir(parents=True, exist_ok=True)
     arts = load_articles()
     us = [a for a in arts if a.get("_market", "us") != "th"]
     th = [a for a in arts if a.get("_market") == "th"]
     by = defaultdict(list)
     for a in arts:
         by[(a.get("_market", "us"), a.get("cluster", "food-noise"))].append(a)
-    urls = []
-    (SITE / "th").mkdir(exist_ok=True)
+    # 先把所有页面渲染到内存(任一篇抛异常=整体失败,此时还没删任何东西 → 绝不发布半成品/删空站)
+    pages, urls = [], []   # pages: (Path, content)
     for a in arts:
         mk = a.get("_market", "us")
         siblings = [s for s in by[(mk, a.get("cluster", "food-noise"))] if s["slug"] != a["slug"]]
         out = (SITE / "th" / f"{a['slug']}.html") if mk == "th" else (SITE / f"{a['slug']}.html")
-        out.write_text(render_article(a, siblings))
+        pages.append((out, render_article(a, siblings)))
         urls.append(art_url(a))
-    (SITE / "index.html").write_text(render_index(us, "en")); urls.append(f"{BASE}/index.html")
-    (SITE / "th" / "index.html").write_text(render_index(th, "th")); urls.append(f"{BASE}/th/index.html")
+    pages.append((SITE / "index.html", render_index(us, "en"))); urls.append(f"{BASE}/index.html")
+    pages.append((SITE / "th" / "index.html", render_index(th, "th"))); urls.append(f"{BASE}/th/index.html")
+    # 安全闸:两个 index 必须都渲染出来,否则中止不落盘(防把首页/全站删空)
+    paths = {p for p, _ in pages}
+    if (SITE / "index.html") not in paths or (SITE / "th" / "index.html") not in paths:
+        raise SystemExit("render aborted: missing index pages — 不落盘,防删空站")
+    # 全部渲染成功 → 才清旧 html(防孤儿)并落盘(保留 CNAME/.nojekyll/robots/sitemap 等非 html)
+    for old in list(SITE.glob("*.html")) + list((SITE / "th").glob("*.html")):
+        old.unlink()
+    for path, content in pages:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content)
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     sm += "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n"
     (SITE / "sitemap.xml").write_text(sm)

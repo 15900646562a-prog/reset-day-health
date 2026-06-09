@@ -41,7 +41,15 @@ if ! python3 src/seo_qc.py >/tmp/qc.out 2>&1; then
 fi
 
 echo "== [3] 渲染 ==" | tee -a "$LOG"
-python3 src/render.py 2>&1 | tee -a "$LOG"
+# pipefail 已开:render 崩(非0)即进 if 分支 → 回滚 docs、不发布、升级 COO(绝不推半成品)
+if ! python3 src/render.py 2>&1 | tee -a "$LOG"; then
+  echo "❌ 渲染失败 → 不发布,回滚 docs,升级 COO" | tee -a "$LOG"
+  git checkout -q -- docs 2>/dev/null || true
+  git clean -fdq docs 2>/dev/null || true
+  { echo "## $(date -u '+%F %H:%M UTC') · 渲染失败,本轮未发布(等 COO)"; } >> ESCALATION.md
+  git add ESCALATION.md && git commit -q -m "escalate: render 失败 $(date -u +%F-%H%M)" && git push -q 2>&1 | tee -a "$LOG" || true
+  exit 1
+fi
 
 echo "== [4] 自动发布(过闸=上线) ==" | tee -a "$LOG"
 git add -A

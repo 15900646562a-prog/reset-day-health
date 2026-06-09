@@ -306,8 +306,8 @@ def write_article(client, item):
     art["_compliance_flags"] = flags
     art["_source_id"] = item["id"]
     art["_persona"] = item.get("persona", "")
-    art["_market"] = item.get("market", "us")
-    art["_lang"] = item.get("lang", "en")
+    art["_market"] = (item.get("market") or "us").strip().lower()
+    art["_lang"] = (item.get("lang") or "en").strip().lower()
     if mode == "compare":
         art["cluster"] = "compare"
     elif art.get("cluster") not in CLUSTERS:
