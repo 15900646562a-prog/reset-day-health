@@ -14,6 +14,17 @@ PRESC = re.compile(r"\bno prescription\b|prescription-free|without (a |any )?pre
 EFFICACY = re.compile(r"\b\d{1,3}(\.\d)?\s*%\s*(of )?(weight|body|fat|loss|reduction|patients|users|people)", re.I)
 # R14:产品=tirzepatide,绝不讲"植物配方/botanical"(贴错标)
 BOTANICAL = re.compile(r"plant-based|botanical|plant extract|plant fiber|green tea extract|sea kelp|植物", re.I)
+# R15:SEO 面禁把 T-Patch 绑定到"透皮递送药物/等同打针"的促销主张(YMYL+合规)。
+#   只拦促销性绑定措辞,不误伤诚实科普(如"肽难透皮"不含下列任一模式)。
+OVERCLAIM = re.compile(
+    r"transdermal tirzepatide|tirzepatide\s*\(transdermal\)"
+    r"|deliver(s|ing|ed)? (tirzepatide|the drug|medication)"
+    r"|no[- ]needle way to get tirzepatide"
+    r"|get tirzepatide without (the |a )?(needle|injection|shot)"
+    r"|as effective as (the |an )?(injection|shot|needle)"
+    r"|works (just )?(as well as|like) (the |an )?(injection|shot|needle)"
+    r"|tirzepatide (delivered |absorbed )?through (the |your )?skin",
+    re.I)
 # 等同性/cure/miracle = 硬伤(渲染不会兜)。guarantee/FDA-approved 渲染会中性化,故先套同样中性化再判(与上线文本一致)。
 EQUIV = re.compile(r"same as (mounjaro|wegovy|zepbound|ozempic)|equivalent to (mounjaro|wegovy|zepbound|ozempic)|\bcure[ds]?\b|\bmiracle\b", re.I)
 NEUTRALIZE = [(re.compile(r"\bguarantee(d|s)?\b", re.I), " "), (re.compile(r"\bFDA[- ]approved\b", re.I), " ")]
@@ -42,6 +53,8 @@ def check(d):
         fails.append("编造疗效%(需真实研究)")
     if BOTANICAL.search(t):
         fails.append("植物配方/botanical(违R14,产品=tirzepatide)")
+    if OVERCLAIM.search(t):
+        fails.append("疗效/透皮over-claim(违R15:不绑T-Patch=透皮递药/等同打针)")
     secs = len(d.get("sections", []))
     if secs < 3:
         fails.append(f"薄页(段落{secs})")
