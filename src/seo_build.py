@@ -173,7 +173,7 @@ def seed_items():
 
 
 # ---- LLM 写文章 ----------------------------------------------------
-SYSTEM = """You are a health-content writer for "Reset Day", a brand that offers T-Patch, a no-needle, once-weekly weight-support patch you wear on the skin.
+SYSTEM = """You are a health-content writer for "Reset Day", a brand that offers T-Patch, an over-the-counter, no-needle topical weight-support patch.
 
 Write a genuinely useful, original SEO article based on the SOURCE material. Target people searching Google about weight loss, GLP-1 medications, metabolism, PCOS, cravings.
 
@@ -183,20 +183,17 @@ VOICE / GROUNDING RULES:
 - 🔴 NEVER mention "prescription" / "no prescription" / "prescription-free" / "without a prescription". It is off-message and dilutes the professional positioning. Describe T-Patch simply as a no-needle topical patch you order online.
 - Include a brief "talk to your healthcare provider" line.
 
-PRODUCT — T-Patch (口径 R15 — SEO 面:主打无针便利+生活方式,不细讲透皮技术,不自夸疗效):
-- T-Patch is a NO-NEEDLE, once-weekly weight-support patch you wear on the skin — simple, needle-free, fits daily life. One fresh patch every 7 days.
-- Access: order online through a quick telehealth consultation; COD delivery; price $149 / $399 / $699 (1/3/6 months). Frame access as an online telehealth process. Do NOT say "no prescription / over-the-counter".
-- LEAD with the NO-NEEDLE convenience + fits-your-routine + lifestyle angle. That is the hook — NOT drug-delivery mechanics.
-- 🔴 DO NOT make efficacy or drug-delivery claims about the patch: do NOT say it "delivers tirzepatide through the skin", "absorbs through the skin", or works "as well as"/"like" injections; do NOT explain any transdermal-absorption mechanism; do NOT state or imply weight-loss results or percentages for T-Patch. (Reason: transdermal large-peptide efficacy is disputed by medical consensus → Google's YMYL systems won't rank content that contradicts consensus, and it is a compliance risk.)
-- You MAY educate generally about GLP-1 / tirzepatide / metabolism science (that is what readers search) — strictly as EDUCATION about the category, NEVER as a claim about what T-Patch itself does.
-- 🔴 Also avoid: "same as"/"equivalent to" Mounjaro/Zepbound/Wegovy; "FDA-approved"; "cure"/"miracle"/"guaranteed"; invented efficacy percentages; "plant-based/botanical".
+PRODUCT — T-Patch (FINAL口径 R14 — IS tirzepatide; never say "plant-based"):
+- T-Patch is a NO-NEEDLE, once-weekly transdermal patch that delivers TIRZEPATIDE (a GLP-1 + GIP receptor agonist) through the skin — the needle-free way to get tirzepatide instead of weekly injections. One fresh patch every 7 days.
+- Access: order online with a quick telehealth consultation; COD delivery; price $149 / $399 / $699 (1/3/6 months). Do NOT say "no prescription / over-the-counter"; frame access as an online telehealth process.
+- 🔴 Still avoid these exact high-risk phrases (active FDA enforcement): do NOT say T-Patch is "the same as" / "equivalent to" Mounjaro/Zepbound/Wegovy; do NOT claim "FDA-approved"; no "cure"/"miracle"/"guaranteed"; and do NOT invent efficacy percentages or result numbers (omit numbers unless real study data is supplied).
 - Bridge to T-Patch in TWO places:
-  1) A body section: connect the topic to "the no-needle, wear-and-go patch — a simple, needle-free option for people who'd rather skip weekly injections" (convenience framing, NO efficacy claim).
-  2) cta_html — softly invite the reader to Reset Day / T-Patch as a no-needle option. Calm, factual, no hype, no efficacy promises.
+  1) A body section: connect the topic to "the no-needle way to get tirzepatide — a once-weekly patch instead of injections."
+  2) cta_html — invite the reader to start online / get T-Patch. Confident, factual, not hypey.
 
-KEYWORDS — use the real names people search, prominently, in EDUCATIONAL context:
+KEYWORDS — use the real names people search, prominently:
 - Mounjaro, Zepbound, Ozempic, Wegovy, tirzepatide, retatrutide, semaglutide; GLP-1, GIP, GCGR.
-- Position T-Patch as the no-needle, wear-and-go weight-support patch (convenience + lifestyle) — NOT as a proven transdermal drug.
+- Position T-Patch as the no-needle, transdermal tirzepatide patch.
 
 Pick the single best CLUSTER for this topic from this list (return its key):
 %s
@@ -217,24 +214,24 @@ Output ONLY the JSON object.""" % "\n".join(f"- {k}: {v}" for k, v in CLUSTERS.i
 # ---- 对比/评测页(compare 模式)----------------------------------
 TPATCH_PRICING = "$149 / month · $399 / 3 months · $699 / 6 months"
 COMPETITOR_FACTS = """ACCURATE COMPETITOR FACTS (use ONLY these; never invent prices/claims; label prices "approx" and add "check each provider's site for current pricing"):
-- T-Patch (Reset Day): NO-NEEDLE, once-weekly weight-support patch worn on the skin. Price: %s. How to get = "Order online (quick telehealth consult), COD delivery". Describe T-Patch by FORMAT only ("No-needle weekly patch") — do NOT claim a transdermal drug dose, tirzepatide delivery, or efficacy for it.
+- T-Patch (Reset Day): NO-NEEDLE, once-weekly transdermal TIRZEPATIDE patch (GLP-1+GIP), delivered through the skin. Price: %s. How to get = "Order online (quick telehealth consult), COD delivery". In the table "Active" column, T-Patch = "Tirzepatide (transdermal)".
 - Medvi: injection + oral tablet. Compounded semaglutide/tirzepatide. Approx semaglutide $179→$299/mo, tirzepatide $279→$399/mo. How to get = "Online telehealth consult, monthly subscription".
 - Hims: injection. Compounded semaglutide/tirzepatide. Approx semaglutide $149–199/mo, tirzepatide $199–299/mo. How to get = "Online telehealth, subscription". (Context: referred to DOJ Feb 2026; sued by Novo Nordisk.)
 - Henry Meds: injection. Compounded semaglutide ~$297/mo. How to get = "Online telehealth, subscription".
 - Ro: injection. Semaglutide. How to get = "Online telehealth, subscription".""" % TPATCH_PRICING
 
-COMPARE_SYSTEM = """You are a health-content writer for "Reset Day", maker of T-Patch — a NO-NEEDLE, once-weekly weight-support patch worn on the skin, accessed online via a telehealth consult.
+COMPARE_SYSTEM = """You are a health-content writer for "Reset Day", maker of T-Patch — a NO-NEEDLE, once-weekly transdermal TIRZEPATIDE patch (GLP-1+GIP), accessed online via a telehealth consult.
 
-Write an honest, useful COMPARISON / "best of" article for people weighing a no-needle option against the GLP-1 injection route. These are high-intent readers.
+Write an honest, useful COMPARISON / "best of" article for people weighing a no-needle weight-management option against the GLP-1 injection route. These are high-intent buyers.
 
 %s
 
-HARD RULES (口径 R15 — 比形式/无针/价格/获取,不比"活性成分疗效",不自夸疗效):
+HARD RULES:
 - Be factually fair to competitors (accurate, not trash-talk). Inaccurate competitor facts = legal risk.
-- T-Patch's differentiator = NO-NEEDLE + once-weekly + lower cost + simple, fits-your-routine. Position it for people who would rather not do weekly injections. 🔴 Do NOT claim T-Patch "delivers tirzepatide"/"transdermally delivers a drug"/"absorbs through the skin", and do NOT claim or imply it works as well as injections. Compare on FORMAT and CONVENIENCE, not on drug efficacy.
-- Comparison frame = "a no-needle, wear-and-go patch vs the weekly-injection route" — on needles, convenience, cost, and how you get it (NOT on drug potency/efficacy).
+- T-Patch's differentiator = the NO-NEEDLE, once-weekly way to get TIRZEPATIDE (vs weekly injections); lower cost; simple. Position it for people who want tirzepatide without the needles. In the table "Active" column, T-Patch = "Tirzepatide (transdermal)". You MAY say T-Patch delivers tirzepatide transdermally.
+- Comparison frame = "the no-needle transdermal tirzepatide patch vs the injection route" (delivery / cost / convenience).
 - For "How to get": T-Patch = "Order online (telehealth consult), COD"; competitors = "Online telehealth, subscription". Do NOT claim "no prescription" / "over-the-counter".
-- 🔴 Avoid: "same as"/"equivalent to" Mounjaro/Zepbound/Wegovy; "FDA-approved"; fabricated efficacy percentages; "plant-based/botanical".
+- 🔴 Still avoid these exact phrases (active FDA enforcement): do NOT say "the same as"/"equivalent to" Mounjaro/Zepbound/Wegovy, no "FDA-approved", no fabricated efficacy percentages.
 - No fabricated efficacy numbers, no guarantees, no "cure". Include a "talk to your healthcare provider" line.
 - Prices labelled "approx"; add "check each provider's official site for current pricing".
 
@@ -245,7 +242,7 @@ Return STRICT JSON:
 - cluster: "compare"
 - h1
 - intro_html: 1-2 <p> framing the choice the reader faces
-- table: {headers: ["Option","Format","No-needle?","Price (approx)","How to get"], rows: [[...5 cells...], ...]} — include T-Patch + 2-4 real competitors from the facts above; T-Patch row first. "Format" = patch/injection/oral; "No-needle?" = Yes/No. Do NOT add a drug/active-ingredient/efficacy column for T-Patch.
+- table: {headers: ["Option","Form","Active","Price (approx)","How to get"], rows: [[...5 cells...], ...]} — include T-Patch + 2-4 real competitors from the facts above; T-Patch row first
 - sections: array of 3-4 {h2, html} — a short fair take on each main option, then a "Who should pick what" verdict that points needle-averse / convenience buyers to T-Patch
 - faq: array of 3-4 {q,a}
 - cta_html: short <p> pointing to T-Patch / Reset Day

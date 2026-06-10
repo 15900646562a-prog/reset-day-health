@@ -29,7 +29,7 @@ US_LP_VARIANT = {
     "no-needle": ("/bold", "no_needle"),                  # d Bold:无针利益/免注射
     "_default": ("/q", "general"),
 }
-BTN = {"us": "See T-Patch — the no-needle weight patch →", "th": "ดู T-Patch — แผ่นแปะไม่ใช้เข็ม →"}
+BTN = {"us": "Get T-Patch — the no-needle tirzepatide →", "th": "ดู T-Patch — ทีร์เซพาไทด์แบบไม่ต้องฉีด →"}
 
 # 顺序=首页分簇展示顺序(理性→教育→人群→情绪/利益)
 CLUSTER_NAMES = {
@@ -215,9 +215,9 @@ def render_article(d, siblings, hreflang=""):
             "mainEntity": [{"@type": "Question", "name": clean(q.get("q", "")),
                 "acceptedAnswer": {"@type": "Answer", "text": re.sub('<[^>]+>', '', clean(q.get("a", "")))}} for q in faq]}, ensure_ascii=False)
         faq_ld = f'<script type="application/ld+json">{faq_ld}</script>'
-    disc = ("บทความนี้เพื่อการศึกษาทั่วไป ไม่ใช่คำแนะนำทางการแพทย์ T-Patch คือแผ่นแปะดูแลน้ำหนักแบบไม่ใช้เข็ม สั่งออนไลน์ผ่านการปรึกษาแพทย์ ปรึกษาแพทย์ก่อนตัดสินใจเรื่องการลดน้ำหนักหรือการใช้ยา"
+    disc = ("บทความนี้เพื่อการศึกษาทั่วไป ไม่ใช่คำแนะนำทางการแพทย์ T-Patch คือทีร์เซพาไทด์แบบทาผ่านผิวหนัง ปรึกษาแพทย์ก่อนตัดสินใจเรื่องยา"
             if lang == "th" else
-            "This article is for general education and is not medical advice. T-Patch is a no-needle, once-weekly weight-support patch worn on the skin, ordered online through a telehealth consultation. Talk to your healthcare provider about any weight-management or medication decisions.")
+            "This article is for general education and is not medical advice. T-Patch is a topical (transdermal) delivery of tirzepatide. Talk to your healthcare provider about decisions involving any medication, including tirzepatide.")
     home = f"{BASE}/th/index.html" if market_of(d) == "th" else f"{BASE}/index.html"
     return f"""<!doctype html><html lang="{lang}"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -258,13 +258,13 @@ def render_index(arts, lang):
     if lang == "th":
         title = "Reset Day — ลดน้ำหนักแบบไม่ต้องฉีด & ความรู้ GLP-1"
         h1 = "น้ำหนัก เมตาบอลิซึม และ GLP-1 — เข้าใจง่าย"
-        intro = "ความรู้ตรงไปตรงมาเรื่องทีร์เซพาไทด์ GLP-1 PCOS และความอยากอาหาร — พร้อม T-Patch แผ่นแปะดูแลน้ำหนักแบบไม่ใช้เข็ม"
+        intro = "ความรู้ตรงไปตรงมาเรื่องทีร์เซพาไทด์ GLP-1 PCOS และความอยากอาหาร — พร้อม T-Patch ทีร์เซพาไทด์แบบทาไม่ต้องฉีด"
         home = f"{BASE}/th/index.html"; canon = f"{BASE}/th/index.html"
         verify = ""
     else:
         title = "Reset Day — No-Needle Weight Support & GLP-1 Education"
         h1 = "Weight, metabolism & GLP-1 — in plain English"
-        intro = "Honest education on tirzepatide, Mounjaro, retatrutide, GLP-1/GIP/GCGR, PCOS and life after the shot — plus T-Patch, the no-needle, wear-and-go weight-support patch."
+        intro = "Honest education on tirzepatide, Mounjaro, retatrutide, GLP-1/GIP/GCGR, PCOS and life after the shot — plus T-Patch, the no-needle topical tirzepatide."
         home = f"{BASE}/index.html"; canon = f"{BASE}/index.html"
         verify = ('<meta name="google-site-verification" content="VgeadCjEiRipelYZMsAYt8GdU55mSNC5K9I7tECnaYk">'
                   '<meta name="google-site-verification" content="1YvryP5-kEntEzBtDaiAVKK9-KChZpJokV6zSEEfz7Q">')
