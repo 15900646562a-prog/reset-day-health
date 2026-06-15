@@ -68,5 +68,47 @@
     "market": "th",
     "lang": "th",
     "mode": "article"
+  },
+  {
+    "query": "T-Patch vs Medvi: User Reviews and Results",
+    "slug": "t-patch-vs-medvi-user-reviews-results",
+    "market": "us",
+    "lang": "en",
+    "mode": "compare"
+  },
+  {
+    "query": "The Science Behind Tirzepatide and Weight Loss",
+    "slug": "the-science-behind-tirzepatide-and-weight-loss",
+    "market": "us",
+    "lang": "en",
+    "mode": "article"
+  },
+  {
+    "query": "การใช้แปะแผ่นลดน้ำหนักที่ดีที่สุดในไทย",
+    "slug": "the-best-weight-loss-patch-in-thailand-th",
+    "market": "th",
+    "lang": "th",
+    "mode": "compare"
+  },
+  {
+    "query": "Can T-Patch Help with Emotional Eating?",
+    "slug": "can-t-patch-help-with-emotional-eating",
+    "market": "us",
+    "lang": "en",
+    "mode": "article"
+  },
+  {
+    "query": "เปรียบเทียบ T-Patch กับตัวเลือกแปะลดน้ำหนักอื่น ๆ",
+    "slug": "t-patch-vs-other-weight-loss-patches-th",
+    "market": "th",
+    "lang": "th",
+    "mode": "compare"
+  },
+  {
+    "query": "Understanding GIP and Its Impact on Weight Management",
+    "slug": "understanding-gip-and-weight-management",
+    "market": "us",
+    "lang": "en",
+    "mode": "article"
   }
 ]
