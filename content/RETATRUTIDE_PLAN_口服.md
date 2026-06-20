@@ -11,7 +11,8 @@
 ## ✅ CEO 已拍(2026-06-20)
 - **决策1 — 28% 数字:出,且作重点。** 但**只能作"Lilly 临床试验数据"呈现**(retatrutide 分子在试验里的结果),**绝不写/暗示"用我们的产品减 28%"**。固定措辞:`In Eli Lilly's Phase 3 trials, retatrutide produced about 28% weight loss` / `临床试验中 retatrutide 减重约 28%`。
   - **配套改 seo_qc**:疗效%闸改为"带 trial/study/clinical/Lilly/research 归属的 % 放行;裸的编造 % 仍拦"。（Codex 执行,改 `src/seo_qc.py` EFFICACY 规则。）
-- **决策2 — 点名中国:待 CEO 定**(见 §五）。
+- **决策2 — 点名中国:✅ 可点名。** 把差异化叙事写成"**中国研发的先进口服递送技术**"(advanced oral-delivery technology developed in China)。但仍守所有 seo_qc 闸:不写 `FDA-approved`、不说我们的"="Lilly 的 retatrutide、不编造我们自己产品的疗效数字。China 叙事=技术来源差异化,不是疗效/批准声明。
+- **两决策已齐 → Codex 可开建 retatrutide 簇。**
 
 ## 二、🔴 内容口径(retatrutide 专用)
 为吃流量又不踩 YMYL/合规雷,样章按以下口径写,请你确认:
