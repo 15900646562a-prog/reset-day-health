@@ -19,3 +19,27 @@ seo_qc: 共 70 页 | FAIL 0
 渲染 us=50 th=20 篇 + 2 index + sitemap(72 url) → /root/seo_factory/docs
 视频承接页 → https://learn.resetday.health/v/ + https://learn.resetday.health/th/v/
 == [4] 自动发布(过闸=上线) ==
+✅ 已自动上线
+IndexNow HTTP 200 — 提交 72 个 URL(host=learn.resetday.health)
+200/202 = 已受理。Bing/Yandex 会陆续来抓。
+== [0] GSC + ideate 构思新选题 ==
+gsc_fetch: 无凭据(content/gsc_creds.json 不存在)— 等 CEO 建服务账号（已写空结构,不阻断）
+ideate: 新增 6 个种子 → seeds_extra.json(累计 22)
+  + [us/compare] cheapest-tirzepatide-alternatives
+  + [us/article] weight-loss-options-without-needles-2026
+  + [us/compare] t-patch-vs-other-non-invasive-weight-loss-methods
+  + [th/article] vitamins-and-minerals-weight-loss-th
+  + [us/article] t-patch-managing-sweet-cravings
+  + [th/article] t-patch-weight-loss-solution-th
+== [1] 生产 ==
+收集物资: 62 份 → 写文章(model=gpt-4o-mini, base=https://yunwu.ai/v1, 并发8)
+
+完成: {'ok': 6, 'flagged': 0, 'cached': 56, 'error': 0}
+文章 JSON → /root/seo_factory/content/articles
+== [2] 质检闸(唯一发布门,≤2轮打回重生) ==
+seo_qc: 共 76 页 | FAIL 0
+✅ 全过
+== [3] 渲染 ==
+渲染 us=54 th=22 篇 + 2 index + sitemap(78 url) → /root/seo_factory/docs
+视频承接页 → https://learn.resetday.health/v/ + https://learn.resetday.health/th/v/
+== [4] 自动发布(过闸=上线) ==
