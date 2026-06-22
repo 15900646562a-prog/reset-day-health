@@ -1,0 +1,74 @@
+{
+  "_compliance_flags": [],
+  "_source_id": "manual_reta_seed",
+  "_persona": "tpatch",
+  "_market": "us",
+  "_lang": "en",
+  "slug": "oral-retatrutide-vs-injection",
+  "cluster": "compare",
+  "title": "Oral Retatrutide vs the Injection — Why the Route Changes Everything",
+  "meta_description": "Oral vs injectable retatrutide: why the route is the whole point, and what's realistic in 2026.",
+  "h1": "Oral vs injectable retatrutide — the route is the whole point",
+  "intro_html": "<p>Every headline about retatrutide shows the same picture: a syringe. But the single biggest reason people never start — or quietly quit — a GLP-1 therapy isn't the drug. It's the needle. Here's how an <strong>oral route</strong> changes the experience, and what's realistic in 2026.</p>",
+  "table": {
+    "headers": [
+      "Option",
+      "Format",
+      "No-needle?",
+      "Price (approx)",
+      "How to get"
+    ],
+    "rows": [
+      [
+        "T-Patch (Reset Day)",
+        "No-needle weekly patch",
+        "Yes",
+        "$149 / mo (approx)",
+        "Online telehealth consult, COD"
+      ],
+      [
+        "Retatrutide (Lilly)",
+        "Weekly injection",
+        "No",
+        "Trial-only",
+        "Clinical trials only"
+      ],
+      [
+        "Oral semaglutide (Rybelsus)",
+        "Daily pill",
+        "Yes",
+        "~$299 / mo (approx)",
+        "Prescription"
+      ]
+    ]
+  },
+  "sections": [
+    {
+      "h2": "The needle is the real drop-off",
+      "html": "<p>Needle aversion, weekly injections, fridge storage and travel hassle are why many people delay starting — or stop early. The molecule isn't usually the problem; the delivery is.</p>"
+    },
+    {
+      "h2": "What oral delivery technology solves",
+      "html": "<p>An oral or wear-and-go route means convenience, discretion and better adherence — a daily-life-friendly routine instead of a weekly jab. Advanced oral-delivery technology developed in China is what makes a no-needle route feasible.</p>"
+    },
+    {
+      "h2": "Honest status — and what to pick",
+      "html": "<p>The retatrutide version in trials is injectable and investigational (in Lilly's trials it produced about 28% weight loss). For most people the practical question is simpler: what no-needle, oral-route option can I start now? Prices are approximate — check each provider's official site for current pricing. Talk to your healthcare provider before deciding.</p>"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is there an oral retatrutide pill?",
+      "a": "Lilly's retatrutide is studied as an injection and isn't on the market. Oral-route, no-needle options are available now through telehealth using advanced oral-delivery technology."
+    },
+    {
+      "q": "Does an oral route work without a needle?",
+      "a": "Oral and transdermal delivery technologies are designed to deliver without injections. Discuss what's appropriate for you with a provider."
+    },
+    {
+      "q": "Which should I consider?",
+      "a": "If avoiding needles matters to you, a no-needle, oral-route option you can start online is the practical choice while retatrutide itself remains trial-only."
+    }
+  ],
+  "cta_html": "<p>Want the no-needle route? See Reset Day's online option — telehealth consult, cash on delivery.</p>"
+}

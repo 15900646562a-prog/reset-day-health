@@ -10,8 +10,9 @@ ARTICLES = Path(__file__).resolve().parent.parent / "content" / "articles"
 
 # R14:tirzepatide 为准 → 不再拦 tirzepatide。只拦"无处方/OTC"假声明(产品是 Rx-via-telehealth)
 PRESC = re.compile(r"\bno prescription\b|prescription-free|without (a |any )?prescription|over-the-counter|\bOTC\b", re.I)
-# 编造疗效数字(无真实研究前不许放百分比)
+# 疗效%:裸编造仍拦;但带试验/研究归属的%放行(R15-retatrutide决策:28%可作Lilly试验数据)
 EFFICACY = re.compile(r"\b\d{1,3}(\.\d)?\s*%\s*(of )?(weight|body|fat|loss|reduction|patients|users|people)", re.I)
+TRIAL_ATTRIB = re.compile(r"trial|stud(y|ies)|clinical|lilly|research|phase\s*[0-9]|triumph", re.I)
 # R14:产品=tirzepatide,绝不讲"植物配方/botanical"(贴错标)
 BOTANICAL = re.compile(r"plant-based|botanical|plant extract|plant fiber|green tea extract|sea kelp|植物", re.I)
 # 等同性/cure/miracle = 硬伤(渲染不会兜)。guarantee/FDA-approved 渲染会中性化,故先套同样中性化再判(与上线文本一致)。
@@ -38,8 +39,10 @@ def check(d):
         fails.append("无处方/OTC假声明(违R14)")
     if EQUIV.search(as_published(t)):
         fails.append("等同性/cure/miracle")
-    if EFFICACY.search(t):
-        fails.append("编造疗效%(需真实研究)")
+    for m in EFFICACY.finditer(t):  # 仅拦"无试验归属"的裸疗效%;附近有 trial/Lilly/study 则放行
+        if not TRIAL_ATTRIB.search(t[max(0, m.start() - 90):m.end() + 30]):
+            fails.append("编造疗效%(裸数字无试验归属)")
+            break
     if BOTANICAL.search(t):
         fails.append("植物配方/botanical(违R14,产品=tirzepatide)")
     secs = len(d.get("sections", []))

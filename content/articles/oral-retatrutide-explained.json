@@ -1,0 +1,50 @@
+{
+  "_compliance_flags": [],
+  "_source_id": "manual_reta_seed",
+  "_persona": "tpatch",
+  "_market": "us",
+  "_lang": "en",
+  "slug": "oral-retatrutide-explained",
+  "cluster": "how-it-works",
+  "title": "Oral Retatrutide: The Pill-Form Triple Agonist, Explained",
+  "meta_description": "What oral retatrutide is, why oral delivery is the real breakthrough, and the no-needle options you can start with today.",
+  "h1": "Oral retatrutide — the triple-agonist, without the needle",
+  "intro_html": "<p>Retatrutide is the most talked-about name in weight management right now — a \"triple agonist\" that works on three pathways at once (GLP-1, GIP and glucagon/GCGR). In Eli Lilly's Phase 3 TRIUMPH trials, retatrutide produced about 28% average weight loss — among the largest reductions ever reported for an obesity drug.</p><p>But most articles bury the part that matters to real people: the version studied in trials is a <strong>weekly injection</strong>, and it is not approved or on the market yet. This guide explains what retatrutide is, why <strong>oral delivery</strong> is the real breakthrough, and the no-needle options you can actually start with today.</p>",
+  "sections": [
+    {
+      "h2": "What a \"triple agonist\" actually does",
+      "html": "<p>Most weight-loss drugs target one hormone pathway. Semaglutide (Ozempic, Wegovy) is GLP-1 only. Tirzepatide (Mounjaro, Zepbound) adds GIP — two pathways. Retatrutide goes further, acting on three: GLP-1 (appetite and satiety), GIP (insulin and metabolism), and glucagon/GCGR (energy expenditure). That third pathway is why researchers are paying so much attention.</p>"
+    },
+    {
+      "h2": "Why oral delivery is the real story",
+      "html": "<p>For most people the barrier isn't the molecule — it's the needle: aversion, weekly injections, cold storage. <strong>Oral delivery technology</strong> removes that barrier and turns a needle-based therapy into a daily-life-friendly routine. This is where the field is heading, and advanced oral-delivery technology — developed in China — is already making no-needle, oral-route options possible.</p>"
+    },
+    {
+      "h2": "Where things stand in 2026",
+      "html": "<p>To be clear: Lilly's retatrutide is investigational, studied as an injection, and has not received an FDA decision yet. So \"buying retatrutide\" online today is not a real, regulated option. What is available now is the <strong>no-needle, oral-route approach</strong> for people who want to avoid injections.</p>"
+    },
+    {
+      "h2": "What you can do now",
+      "html": "<p>Reset Day offers a no-needle, oral-route option you can start online — through a quick telehealth consultation, shipped to you, with cash on delivery. Talk to your healthcare provider about any weight or medication decision.</p>"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is oral retatrutide available?",
+      "a": "Lilly's retatrutide is investigational and studied as an injection; it isn't FDA-approved or sold at pharmacies. No-needle, oral-route options exist through telehealth providers using advanced oral-delivery technology."
+    },
+    {
+      "q": "Why does \"oral\" matter?",
+      "a": "It removes the needle — the number-one reason people delay or quit. Oral delivery technology makes a triple-agonist routine far easier to stick with."
+    },
+    {
+      "q": "How is this different from the injection?",
+      "a": "Same goal — appetite and metabolism support — delivered without a needle, via an oral route, instead of a weekly injection."
+    },
+    {
+      "q": "How do I start?",
+      "a": "A quick online telehealth consult; if appropriate, it ships to you, with cash on delivery."
+    }
+  ],
+  "cta_html": "<p>Curious about the no-needle, oral-route option? See how Reset Day works — online consult, cash on delivery.</p>"
+}
