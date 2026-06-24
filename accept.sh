@@ -29,8 +29,19 @@ PAGES=$(ls docs/*.html docs/th/*.html 2>/dev/null | wc -l | tr -d ' ')
 BANNED=$(python3 - <<'PY'
 import json, glob, os, re
 fs = sorted(glob.glob("content/articles/*.json"), key=os.path.getmtime, reverse=True)[:3]
-rx = re.compile(r"plant-based|botanical|植物|no prescription|over-the-counter|FDA[- ]approved|same as (mounjaro|zepbound|wegovy)|\bcure\b|\bguarantee\b|\d{1,3}%\s*(weight|fat|loss)", re.I)
-hits = sum(1 for f in fs if rx.search(json.dumps(json.load(open(f)), ensure_ascii=False)))
+hard = re.compile(r"plant-based|botanical|植物|no prescription|over-the-counter|same as (mounjaro|zepbound|wegovy)|\bcure\b|\bguarantee\b", re.I)
+efficacy = re.compile(r"\b\d{1,3}(\.\d)?\s*%\s*(of )?(weight|body|fat|loss|reduction|patients|users|people)", re.I)
+trial_attrib = re.compile(r"trial|stud(y|ies)|clinical|lilly|research|phase\s*[0-9]|triumph", re.I)
+
+def bad(text):
+    if hard.search(text):
+        return True
+    for m in efficacy.finditer(text):
+        if not trial_attrib.search(text[max(0, m.start() - 90):m.end() + 30]):
+            return True
+    return False
+
+hits = sum(1 for f in fs if bad(json.dumps(json.load(open(f)), ensure_ascii=False)))
 print(hits)
 PY
 )
