@@ -194,5 +194,47 @@
     "market": "us",
     "lang": "en",
     "mode": "compare"
+  },
+  {
+    "query": "T-Patch vs Medvi: Pros and Cons of Topical Weight Loss",
+    "slug": "t-patch-vs-medvi-pros-cons",
+    "market": "us",
+    "lang": "en",
+    "mode": "compare"
+  },
+  {
+    "query": "การใช้งานแผ่นแปะทีร์เซพาไทด์ในผู้สูงอายุ: สิ่งที่คุณควรรู้",
+    "slug": "usage-tirzepatide-patch-elderly-th",
+    "market": "th",
+    "lang": "th",
+    "mode": "article"
+  },
+  {
+    "query": "How to Combine T-Patch with Diet for Best Results",
+    "slug": "combine-t-patch-diet-best-results",
+    "market": "us",
+    "lang": "en",
+    "mode": "article"
+  },
+  {
+    "query": "วิเคราะห์ความแตกต่างระหว่างที-Patch และ Hims ในการลดน้ำหนัก",
+    "slug": "analysis-t-patch-hims-weight-loss-th",
+    "market": "th",
+    "lang": "th",
+    "mode": "compare"
+  },
+  {
+    "query": "T-Patch vs Weight Loss Pills: Which Offers Better Results?",
+    "slug": "t-patch-vs-weight-loss-pills-results",
+    "market": "us",
+    "lang": "en",
+    "mode": "compare"
+  },
+  {
+    "query": "เหตุผลที่แผ่นแปะทีร์เซพาไทด์ช่วยในการควบคุมความหิว",
+    "slug": "reasons-tirzepatide-patch-hunger-control-th",
+    "market": "th",
+    "lang": "th",
+    "mode": "article"
   }
 ]
