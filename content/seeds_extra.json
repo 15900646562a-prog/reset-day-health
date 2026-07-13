@@ -236,5 +236,47 @@
     "market": "th",
     "lang": "th",
     "mode": "article"
+  },
+  {
+    "query": "T-Patch vs Henry: Finding the Best No-Needle Weight Loss Solution",
+    "slug": "t-patch-vs-henry-compare",
+    "market": "us",
+    "lang": "en",
+    "mode": "compare"
+  },
+  {
+    "query": "Understanding GIP and Its Impact on Cravings: A Guide for T-Patch Users",
+    "slug": "understanding-gip-cravings-article",
+    "market": "us",
+    "lang": "en",
+    "mode": "article"
+  },
+  {
+    "query": "เปรียบเทียบ T-Patch กับ Medvi: ข้อดีและข้อเสียที่คุณต้องรู้",
+    "slug": "t-patch-vs-medvi-th",
+    "market": "th",
+    "lang": "th",
+    "mode": "compare"
+  },
+  {
+    "query": "Life After the Shot: How T-Patch Can Help You Maintain Weight Loss",
+    "slug": "life-after-the-shot-t-patch-article",
+    "market": "us",
+    "lang": "en",
+    "mode": "article"
+  },
+  {
+    "query": "T-Patch vs Alternatives: Cost-Effectiveness of No-Needle Weight Loss",
+    "slug": "t-patch-vs-alternatives-compare",
+    "market": "us",
+    "lang": "en",
+    "mode": "compare"
+  },
+  {
+    "query": "วิธีจัดการกับความหิวในวัยทองด้วย T-Patch",
+    "slug": "managing-hunger-menopause-th",
+    "market": "th",
+    "lang": "th",
+    "mode": "article"
   }
 ]
