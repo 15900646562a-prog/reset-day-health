@@ -320,5 +320,47 @@
     "market": "th",
     "lang": "th",
     "mode": "compare"
+  },
+  {
+    "query": "T-Patch vs Oral Weight Loss Solutions: Which is Safer?",
+    "slug": "t-patch-vs-oral-weight-loss-us",
+    "market": "us",
+    "lang": "en",
+    "mode": "compare"
+  },
+  {
+    "query": "Understanding PCOS and T-Patch: Weight Loss Solutions for Women",
+    "slug": "understanding-pcos-t-patch-us",
+    "market": "us",
+    "lang": "en",
+    "mode": "article"
+  },
+  {
+    "query": "T-Patch vs Non-GLP-1 Weight Loss Products: What You Need to Know",
+    "slug": "t-patch-vs-non-glp1-th",
+    "market": "th",
+    "lang": "th",
+    "mode": "compare"
+  },
+  {
+    "query": "T-Patch and Diabetes Management: A Comprehensive Guide",
+    "slug": "t-patch-diabetes-management-us",
+    "market": "us",
+    "lang": "en",
+    "mode": "article"
+  },
+  {
+    "query": "แปะแผ่นทีร์เซพาไทด์: ข้อดีและข้อเสียในการลดน้ำหนัก",
+    "slug": "t-patch-pros-cons-th",
+    "market": "th",
+    "lang": "th",
+    "mode": "article"
+  },
+  {
+    "query": "T-Patch for Managing Stress Eating: Is It Effective?",
+    "slug": "t-patch-stress-eating-us",
+    "market": "us",
+    "lang": "en",
+    "mode": "article"
   }
 ]
