@@ -1,0 +1,89 @@
+{
+  "slug": "t-patch-vs-compounded-tirzepatide",
+  "title": "T-Patch vs Compounded Tirzepatide: Pros and Cons You Need to Know",
+  "meta_description": "Explore the pros and cons of T-Patch vs compounded tirzepatide injections for weight management.",
+  "cluster": "compare",
+  "h1": "T-Patch vs Compounded Tirzepatide: Pros and Cons You Need to Know",
+  "intro_html": "<p>When considering weight management options, many individuals are weighing the benefits of a no-needle solution like T-Patch against the more traditional compounded tirzepatide injections. Each option has its unique advantages and disadvantages, making it essential to understand the differences to make an informed choice.</p>",
+  "table": {
+    "headers": [
+      "Option",
+      "Form",
+      "Active",
+      "Price (approx)",
+      "How to get"
+    ],
+    "rows": [
+      [
+        "T-Patch",
+        "Patch",
+        "Tirzepatide (transdermal)",
+        "$149 / month · $399 / 3 months · $699 / 6 months",
+        "Order online (telehealth consult), COD"
+      ],
+      [
+        "Medvi",
+        "Injection + oral tablet",
+        "Semaglutide/Tirzepatide",
+        "$179→$299/mo (semaglutide) · $279→$399/mo (tirzepatide)",
+        "Online telehealth, subscription"
+      ],
+      [
+        "Hims",
+        "Injection",
+        "Semaglutide/Tirzepatide",
+        "$149–199/mo (semaglutide) · $199–299/mo (tirzepatide)",
+        "Online telehealth, subscription"
+      ],
+      [
+        "Henry Meds",
+        "Injection",
+        "Semaglutide",
+        "$297/mo",
+        "Online telehealth, subscription"
+      ]
+    ]
+  },
+  "sections": [
+    {
+      "h2": "T-Patch: The No-Needle Solution",
+      "html": "<p>T-Patch offers a no-needle, once-weekly transdermal delivery of tirzepatide, making it an attractive option for those averse to injections. The convenience of applying a patch at home without the need for needles can enhance adherence and comfort. With a straightforward online telehealth consult, users can easily access this option, which is priced at approximately $149 per month.</p>"
+    },
+    {
+      "h2": "Compounded Tirzepatide Injections",
+      "html": "<p>Compounded tirzepatide injections, available through providers like Medvi and Hims, require regular injections either weekly or monthly. While these injections may be effective for weight management, they can be less convenient and more intimidating for those who fear needles. Prices for compounded tirzepatide vary, typically ranging from approximately $199 to $399 per month, depending on the provider and the formulation.</p>"
+    },
+    {
+      "h2": "Cost Considerations",
+      "html": "<p>When comparing costs, T-Patch stands out as a more affordable option, especially for those looking for a straightforward transdermal solution. Compounded injections can be pricier, and users may also need to factor in additional costs for consultations and subscriptions. Thus, for budget-conscious individuals, T-Patch provides a compelling alternative.</p>"
+    },
+    {
+      "h2": "Who Should Pick What?",
+      "html": "<p>Individuals who are needle-averse, prefer a simple application method, or are looking for a cost-effective solution may find T-Patch to be the best fit. On the other hand, those who are comfortable with injections and are seeking specific compounded formulations may opt for traditional tirzepatide injections. Ultimately, the choice will depend on personal preferences and comfort levels.</p>"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is T-Patch?",
+      "a": "T-Patch is a no-needle, once-weekly transdermal patch delivering tirzepatide for weight management."
+    },
+    {
+      "q": "How does compounded tirzepatide work?",
+      "a": "Compounded tirzepatide involves receiving the medication through injections, typically requiring weekly or monthly visits."
+    },
+    {
+      "q": "Is T-Patch more affordable than injections?",
+      "a": "Yes, T-Patch generally offers a more affordable monthly cost compared to compounded tirzepatide injections."
+    },
+    {
+      "q": "Should I consult my healthcare provider?",
+      "a": "Yes, it's important to talk to your healthcare provider to determine the best option for your weight management needs."
+    }
+  ],
+  "cta_html": "<p>Ready to explore the convenience of T-Patch? Visit Reset Day to learn more and start your journey today!</p>",
+  "_compliance_flags": [],
+  "_source_id": "t-patch-vs-compounded-tirzepatide",
+  "_persona": "tpatch",
+  "_market": "us",
+  "_lang": "en"
+}
