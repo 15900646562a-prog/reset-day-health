@@ -219,3 +219,35 @@ seo_qc: 共 116 页 | FAIL 0
 渲染 us=81 th=35 篇 + 2 index + sitemap(118 url) → /root/seo_factory/docs
 视频承接页 → https://learn.resetday.health/v/ + https://learn.resetday.health/th/v/
 == [4] 自动发布(过闸=上线) ==
+✅ 已自动上线
+IndexNow HTTP 200 — 提交 118 个 URL(host=learn.resetday.health)
+200/202 = 已受理。Bing/Yandex 会陆续来抓。
+== [0] GSC + ideate 构思新选题 ==
+gsc_fetch: 无凭据(content/gsc_creds.json 不存在)— 等 CEO 建服务账号（已写空结构,不阻断）
+Traceback (most recent call last):
+  File "/root/seo_factory/src/ideate.py", line 100, in <module>
+    main()
+  File "/root/seo_factory/src/ideate.py", line 67, in main
+    r = client.chat.completions.create(model=MODEL, response_format={"type": "json_object"},
+  File "/usr/local/lib/python3.10/dist-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/openai/resources/chat/completions/completions.py", line 1211, in create
+    return self._post(
+  File "/usr/local/lib/python3.10/dist-packages/openai/_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/usr/local/lib/python3.10/dist-packages/openai/_base_client.py", line 1087, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': '该令牌额度已用尽 (request id: 202608171100132997232059RM13zIy)', 'type': 'new_api_error'}}
+ideate 跳过
+== [1] 生产 ==
+收集物资: 98 份 → 写文章(model=gpt-4o-mini, base=https://yunwu.ai/v1, 并发8)
+
+完成: {'ok': 0, 'flagged': 0, 'cached': 98, 'error': 0}
+文章 JSON → /root/seo_factory/content/articles
+== [2] 质检闸(唯一发布门,≤2轮打回重生) ==
+seo_qc: 共 116 页 | FAIL 0
+✅ 全过
+== [3] 渲染 ==
+渲染 us=81 th=35 篇 + 2 index + sitemap(118 url) → /root/seo_factory/docs
+视频承接页 → https://learn.resetday.health/v/ + https://learn.resetday.health/th/v/
+== [4] 自动发布(过闸=上线) ==
